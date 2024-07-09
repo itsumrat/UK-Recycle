@@ -27,7 +27,6 @@ class _CreateNewPiecesPalletState extends State<CreateNewPiecesPallet> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return AppWidget(
       appBarTitle: "Deliveries In ID: DI000012",
       textSize: 20,

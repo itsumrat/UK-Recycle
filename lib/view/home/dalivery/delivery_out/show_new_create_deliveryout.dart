@@ -29,7 +29,7 @@ class _ShowNewlyCreateDeliveryOutState extends State<ShowNewlyCreateDeliveryOut>
   ];
   String? selectedValue;
   Future<SingleExistingDeliveryOutModel>? _getSingleDeliveryOut;
-  var user_name, user_id;
+  String? user_name, user_id;
   getUserInfo() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     setState(() {
@@ -40,7 +40,6 @@ class _ShowNewlyCreateDeliveryOutState extends State<ShowNewlyCreateDeliveryOut>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     print("delivery id === ${widget.deliveryId.toString()}");
     _getSingleDeliveryOut = DeliveryOutController.getSingleDeliveryOut(id: widget.deliveryId.toString());
@@ -49,7 +48,6 @@ class _ShowNewlyCreateDeliveryOutState extends State<ShowNewlyCreateDeliveryOut>
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return AppWidget(
       appBarTitle: "NEW Delivery Out Created",
       appBarOnBack: () => Get.back(),

@@ -30,7 +30,6 @@ class _ShowCageBoxState extends State<ShowCageBox> {
   Future<SingleDeliveryInModel>? _getSingleDeliveryIn;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     print("delivery id === ${widget.deliveryId.toString()}");
     _getSingleDeliveryIn = DeliveryInController.getSingleDeliveryIn(id: widget.deliveryId.toString());
@@ -38,7 +37,6 @@ class _ShowCageBoxState extends State<ShowCageBox> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return AppWidget(
       appBarTitle: "NEW Delivery In Created",
       appBarOnBack: () => Get.back(),

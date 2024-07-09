@@ -36,7 +36,6 @@ class _ShowNewlyCreateDeliveryOutSingleTrxState extends State<ShowNewlyCreateDel
   Future<SingleDeliveryOutTrxModel>? _getSingleDeliveryOut;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     print("delivery id === ${widget.trxId.toString()}");
     _getSingleDeliveryOut = DeliveryOutController.getSingleDeliveryOutTrx(id: widget.trxId.toString());
@@ -44,7 +43,6 @@ class _ShowNewlyCreateDeliveryOutSingleTrxState extends State<ShowNewlyCreateDel
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return AppWidget(
       appBarTitle: "NEW Deliveries Out Created",
       appBarOnBack: ()=>Get.back(),

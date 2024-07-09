@@ -30,7 +30,6 @@ class CreateNewCageBox extends StatefulWidget {
 
 class _CreateNewCageBoxState extends State<CreateNewCageBox> {
   //current data form app const
-  var currentDate;
 
   final userIdTextController = TextEditingController();
   final dateTextController = TextEditingController();
@@ -84,7 +83,6 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     allUserFuture = UserController.getAllUser(); // get all user
     dateTextController.text = AppConst.currentData(); //get current date
@@ -95,7 +93,6 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return AppWidget(
       appBarTitle: "Deliveries In ID: ${widget.existingDeliveryInDatum!.deliveryInId}",
       textSize: 20,

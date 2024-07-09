@@ -1,12 +1,9 @@
 import 'dart:core';
 
 import 'package:crm/controller/cage_controller/cage_controller.dart';
-import 'package:crm/controller/delivery_controller%20/in_controller/delivery_type_controller.dart';
 import 'package:crm/controller/delivery_controller%20/out_controller/delivery_out_controller.dart';
 import 'package:crm/controller/user_controller/userController.dart';
 import 'package:crm/model/cage_model/cage_model.dart';
-import 'package:crm/model/delivery_model/in_model/delivery_model.dart';
-import 'package:crm/model/delivery_model/in_model/product_category_model.dart';
 import 'package:crm/model/delivery_model/out_model/existing_delivery_out_model.dart';
 import 'package:crm/model/user_model/allUserModel.dart';
 import 'package:crm/utility/app_const.dart';
@@ -35,9 +32,6 @@ class CreateSingleTr extends StatefulWidget {
 }
 
 class _CreateSingleTrState extends State<CreateSingleTr> {
-  //current data form app const
-  var currentDate;
-
   final userIdTextController = TextEditingController();
   final dateTextController = TextEditingController();
 
@@ -53,17 +47,6 @@ class _CreateSingleTrState extends State<CreateSingleTr> {
   String? selectUserName;
 
   Future<AllUserModel>? allUserFuture;
-  final List<DeliveryDatum> _allDeliveryTypeList = [];
-  final List<ProductCategoryDatum> _allProductCategoryList = [];
-  //get delivery type list
-  void _getDeliveryTypeList() async {
-    var res = await DeliveryTypeController.getDeliveryType();
-    for (var i in res.data!) {
-      setState(() {
-        _allDeliveryTypeList.add(i);
-      });
-    }
-  }
 
   //get product category
   final List<CageDatum> _allCageList = [];
@@ -81,7 +64,6 @@ class _CreateSingleTrState extends State<CreateSingleTr> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     allUserFuture = UserController.getAllUser(); // get all user
     dateTextController.text = AppConst.currentData(); //get current date
@@ -96,7 +78,6 @@ class _CreateSingleTrState extends State<CreateSingleTr> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return AppWidget(
       appBarTitle: "Delivery Out ID: ${widget.existingDeliveryInDatum!.deliveryOutId}",
       textSize: 20,

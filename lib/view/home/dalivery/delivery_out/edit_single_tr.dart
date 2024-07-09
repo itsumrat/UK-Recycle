@@ -1,10 +1,6 @@
 import 'package:crm/controller/cage_controller/cage_controller.dart';
-import 'package:crm/controller/delivery_controller%20/in_controller/delivery_type_controller.dart';
-import 'package:crm/controller/delivery_controller%20/in_controller/product_category_controller.dart';
 import 'package:crm/controller/delivery_controller%20/out_controller/delivery_out_controller.dart';
 import 'package:crm/model/cage_model/cage_model.dart';
-import 'package:crm/model/delivery_model/in_model/delivery_model.dart';
-import 'package:crm/model/delivery_model/in_model/product_category_model.dart';
 import 'package:crm/model/delivery_model/out_model/SingleExistingDeliveryOutModel.dart';
 import 'package:crm/model/delivery_model/out_model/deliveryOutTsListModel.dart';
 import 'package:crm/model/delivery_model/out_model/existing_delivery_out_model.dart';
@@ -55,26 +51,6 @@ class _EditDeliveryOutTranscationState extends State<EditDeliveryOutTranscation>
   final cageNo = TextEditingController();
   final weight = TextEditingController();
 
-  final List<DeliveryDatum> _deliveryTypeList = [];
-  void _getDeliveryTypeFuture() async {
-    var res = await DeliveryTypeController.getDeliveryType();
-    for (var i in res.data!) {
-      setState(() {
-        _deliveryTypeList.add(i);
-      });
-    }
-  }
-
-  final List<ProductCategoryDatum> _productCategoryList = [];
-  void _getProductCategoryFuture() async {
-    var res = await DeliveryInProductCategoryController.getProductCategory();
-    for (var i in res!.data!) {
-      setState(() {
-        _productCategoryList.add(i);
-      });
-    }
-  }
-
   final List<CageDatum> _allCageList = [];
   //get product category
   void _getAllCageList() async {
@@ -99,7 +75,6 @@ class _EditDeliveryOutTranscationState extends State<EditDeliveryOutTranscation>
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return AppWidget(
       appBarTitle:
           "Transaction sad ID: ${widget.singleDelivery!.data!.delivery!.deliveryOutId}/${widget.singleTransaction?.id.toString()}",
