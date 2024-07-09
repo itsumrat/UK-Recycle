@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 
 class ShowTranscations extends StatefulWidget {
-  const ShowTranscations({Key? key}) : super(key: key);
+  const ShowTranscations({super.key});
 
   @override
   State<ShowTranscations> createState() => _ShowTranscationsState();

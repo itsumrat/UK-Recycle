@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddNewGrade extends StatefulWidget {
-  const AddNewGrade({Key? key}) : super(key: key);
+  const AddNewGrade({super.key});
 
   @override
   State<AddNewGrade> createState() => _AddNewGradeState();

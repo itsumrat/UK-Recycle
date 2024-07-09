@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 
 class AddProductCategory extends StatefulWidget {
-  const AddProductCategory({Key? key}) : super(key: key);
+  const AddProductCategory({super.key});
 
   @override
   State<AddProductCategory> createState() => _AddProductCategoryState();

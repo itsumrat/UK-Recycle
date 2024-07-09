@@ -8,7 +8,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'add_new_password.dart';
 
 class VerifiyEmail extends StatefulWidget {
-  const VerifiyEmail({Key? key}) : super(key: key);
+  const VerifiyEmail({super.key});
 
   @override
   State<VerifiyEmail> createState() => _VerifiyEmailState();

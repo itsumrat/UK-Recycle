@@ -27,7 +27,7 @@ import 'existingDeliveries/add_new/cageBox/show_cage_box.dart';
 class AddNewDelivery extends StatefulWidget {
   final bool isDeliveryOut;
 
-  const AddNewDelivery({Key? key, this.isDeliveryOut = true}) : super(key: key);
+  const AddNewDelivery({super.key, this.isDeliveryOut = true});
 
   @override
   State<AddNewDelivery> createState() => _AddNewDeliveryState();

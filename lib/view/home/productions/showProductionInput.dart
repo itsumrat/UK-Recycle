@@ -19,8 +19,7 @@ class ShowProductionsInputs extends StatefulWidget {
   final AllProductionDatum? production;
   final String? transactionID;
   const ShowProductionsInputs(
-      {Key? key, required this.weight, required this.grade, this.production, required this.date, this.transactionID})
-      : super(key: key);
+      {super.key, required this.weight, required this.grade, this.production, required this.date, this.transactionID});
 
   @override
   State<ShowProductionsInputs> createState() => _ShowProductionsInputsState();

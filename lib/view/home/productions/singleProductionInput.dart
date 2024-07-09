@@ -26,14 +26,13 @@ class SingleProductionInput extends StatefulWidget {
   final String? existingGradeId;
   final String? transactionID;
   const SingleProductionInput(
-      {Key? key,
+      {super.key,
       this.grades,
       this.production,
       this.existingWeight,
       this.existingGrade,
       this.transactionID,
-      this.existingGradeId})
-      : super(key: key);
+      this.existingGradeId});
 
   @override
   State<SingleProductionInput> createState() => _SingleProductionInputState();

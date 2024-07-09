@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class ClockOut extends StatefulWidget {
-  const ClockOut({Key? key}) : super(key: key);
+  const ClockOut({super.key});
 
   @override
   State<ClockOut> createState() => _ClockOutState();

@@ -10,7 +10,7 @@ import '../../../../model/delivery_model/in_model/delivery_model.dart';
 
 
 class AddDeliveryType extends StatefulWidget {
-  const AddDeliveryType({Key? key}) : super(key: key);
+  const AddDeliveryType({super.key});
 
   @override
   State<AddDeliveryType> createState() => _AddDeliveryTypeState();

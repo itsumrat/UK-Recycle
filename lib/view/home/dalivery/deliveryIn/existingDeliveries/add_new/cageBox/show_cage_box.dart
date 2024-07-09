@@ -13,7 +13,7 @@ import 'package:intl/intl.dart';
 
 class ShowCageBox extends StatefulWidget {
   final String? deliveryId;
-  const ShowCageBox({Key? key, this.deliveryId}) : super(key: key);
+  const ShowCageBox({super.key, this.deliveryId});
 
   @override
   State<ShowCageBox> createState() => _ShowCageBoxState();

@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 
 class AddGrade extends StatefulWidget {
-  const AddGrade({Key? key}) : super(key: key);
+  const AddGrade({super.key});
 
   @override
   State<AddGrade> createState() => _AddGradeState();

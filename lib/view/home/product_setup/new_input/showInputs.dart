@@ -14,7 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ShowNewlyCretaeProduction extends StatefulWidget {
   final String pId;
-  const ShowNewlyCretaeProduction({Key? key, required this.pId}) : super(key: key);
+  const ShowNewlyCretaeProduction({super.key, required this.pId});
 
   @override
   State<ShowNewlyCretaeProduction> createState() => _ShowNewlyCretaeProductionState();

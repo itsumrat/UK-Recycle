@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 enum ListFilter { today, all }
 
 class Productoins extends StatefulWidget {
-  const Productoins({Key? key}) : super(key: key);
+  const Productoins({super.key});
 
   @override
   State<Productoins> createState() => _ProductoinsState();

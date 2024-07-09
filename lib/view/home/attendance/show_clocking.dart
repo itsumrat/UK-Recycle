@@ -8,7 +8,7 @@ import '../../../view_controller/appWidgets.dart';
 import 'clockIn.dart';
 
 class ShowClockIn extends StatefulWidget {
-  const ShowClockIn({Key? key}) : super(key: key);
+  const ShowClockIn({super.key});
 
   @override
   State<ShowClockIn> createState() => _ShowClockInState();

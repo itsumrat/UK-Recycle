@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import '../../model/profile_model/profile_info_model.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  const Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();

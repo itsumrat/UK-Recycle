@@ -9,7 +9,7 @@ import 'pieces_pallet/create_new_pieces.dart';
 
 
 class AddNewExistingDeliveries extends StatefulWidget {
-  const AddNewExistingDeliveries({Key? key}) : super(key: key);
+  const AddNewExistingDeliveries({super.key});
 
   @override
   State<AddNewExistingDeliveries> createState() => _AddNewExistingDeliveriesState();

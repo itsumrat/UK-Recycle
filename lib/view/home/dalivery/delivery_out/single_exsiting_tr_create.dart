@@ -25,10 +25,10 @@ class CreateSingleTr extends StatefulWidget {
   final String? existingDeliveryId;
 
   const CreateSingleTr({
-    Key? key,
+    super.key,
     this.existingDeliveryInDatum,
     this.existingDeliveryId,
-  }) : super(key: key);
+  });
 
   @override
   State<CreateSingleTr> createState() => _CreateSingleTrState();

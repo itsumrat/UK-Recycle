@@ -25,12 +25,11 @@ class EditTranscation extends StatefulWidget {
   final CageDatum? existingCage;
 
   const EditTranscation(
-      {Key? key,
+      {super.key,
       required this.singleTransaction,
       required this.singleDelivery,
       this.existingDeliveryInDatum,
-      this.existingCage})
-      : super(key: key);
+      this.existingCage});
 
   @override
   State<EditTranscation> createState() => _EditTranscationState();

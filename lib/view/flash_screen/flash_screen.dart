@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FlashScreen extends StatefulWidget {
-  const FlashScreen({Key? key}) : super(key: key);
+  const FlashScreen({super.key});
 
   @override
   State<FlashScreen> createState() => _FlashScreenState();

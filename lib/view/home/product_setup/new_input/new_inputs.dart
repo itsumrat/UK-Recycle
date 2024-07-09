@@ -20,7 +20,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NewInputs extends StatefulWidget {
-  const NewInputs({Key? key}) : super(key: key);
+  const NewInputs({super.key});
 
   @override
   State<NewInputs> createState() => _NewInputsState();

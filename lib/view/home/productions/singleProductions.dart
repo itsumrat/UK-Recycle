@@ -18,7 +18,7 @@ import '../../../widgets/app_boxes.dart';
 class SingleProductions extends StatefulWidget {
   final AllProductionDatum? productionModel;
   final String id;
-  const SingleProductions({Key? key, this.productionModel, required this.id}) : super(key: key);
+  const SingleProductions({super.key, this.productionModel, required this.id});
 
   @override
   State<SingleProductions> createState() => _SingleProductionsState();

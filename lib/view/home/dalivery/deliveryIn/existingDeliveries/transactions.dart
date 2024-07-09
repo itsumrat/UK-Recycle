@@ -18,7 +18,7 @@ class Transactions extends StatefulWidget {
   final SingleDeliveryInModel? singleDeliveryInModel;
   final ExistingDeliveryInDatum? existingDeliveryInDatum;
 
-  const Transactions({Key? key, this.singleDeliveryInModel, this.existingDeliveryInDatum}) : super(key: key);
+  const Transactions({super.key, this.singleDeliveryInModel, this.existingDeliveryInDatum});
 
   @override
   State<Transactions> createState() => _TransactionsState();

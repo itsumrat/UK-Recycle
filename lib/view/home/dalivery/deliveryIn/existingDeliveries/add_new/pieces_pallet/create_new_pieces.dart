@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 
 class CreateNewPiecesPallet extends StatefulWidget {
-  const CreateNewPiecesPallet({Key? key}) : super(key: key);
+  const CreateNewPiecesPallet({super.key});
 
   @override
   State<CreateNewPiecesPallet> createState() => _CreateNewPiecesPalletState();

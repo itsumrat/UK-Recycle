@@ -15,7 +15,7 @@ enum ListFilter { today, all }
 
 class ExistingDeliveriesOuts extends StatefulWidget {
   final bool? isIn;
-  const ExistingDeliveriesOuts({Key? key, this.isIn = true}) : super(key: key);
+  const ExistingDeliveriesOuts({super.key, this.isIn = true});
 
   @override
   State<ExistingDeliveriesOuts> createState() => _ExistingDeliveriesOutsState();

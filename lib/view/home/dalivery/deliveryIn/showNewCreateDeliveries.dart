@@ -9,7 +9,7 @@ import 'deliveryIn.dart';
 
 
 class ShowCreateNewDeliveries extends StatefulWidget {
-  const ShowCreateNewDeliveries({Key? key}) : super(key: key);
+  const ShowCreateNewDeliveries({super.key});
 
   @override
   State<ShowCreateNewDeliveries> createState() => _ShowCreateNewDeliveriesState();

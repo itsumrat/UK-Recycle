@@ -13,7 +13,7 @@ import 'single_exsiting_tr_create.dart';
 class ShowCreatedOutTR extends StatefulWidget {
   final ExistingDeliveryOutDatum?  existingDeliveryInDatum;
   final String? existingDeliveryId;
-  const ShowCreatedOutTR({Key? key, this.existingDeliveryInDatum, this.existingDeliveryId}) : super(key: key);
+  const ShowCreatedOutTR({super.key, this.existingDeliveryInDatum, this.existingDeliveryId});
 
   @override
   State<ShowCreatedOutTR> createState() => _ShowCreatedOutTRState();

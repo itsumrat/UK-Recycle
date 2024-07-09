@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
   final double? textSize;
   final bool showBottomBar;
   const AppWidget({
-    Key? key,
+    super.key,
     required this.body,
     this.bottomNavigationBar,
     this.floatingActionButton,
@@ -19,7 +19,7 @@ class AppWidget extends StatelessWidget {
     this.appBarOnBack,
     this.textSize = 16,
     this.showBottomBar = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

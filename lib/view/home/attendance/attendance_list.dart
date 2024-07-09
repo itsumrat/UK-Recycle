@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 import '../../../view_controller/appWidgets.dart';
 
 class AttendanceList extends StatefulWidget {
-  const AttendanceList({Key? key}) : super(key: key);
+  const AttendanceList({super.key});
 
   @override
   State<AttendanceList> createState() => _AttendanceListState();

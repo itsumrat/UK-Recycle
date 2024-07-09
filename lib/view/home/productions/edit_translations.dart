@@ -12,7 +12,7 @@ import '../../../view_controller/appWidgets.dart';
 
 class EditProductionsTranslation extends StatefulWidget {
   final AllProductionDatum? productionModel;
-  const EditProductionsTranslation({Key? key, required this.productionModel}) : super(key: key);
+  const EditProductionsTranslation({super.key, required this.productionModel});
 
   @override
   State<EditProductionsTranslation> createState() => _EditProductionsTranslationState();

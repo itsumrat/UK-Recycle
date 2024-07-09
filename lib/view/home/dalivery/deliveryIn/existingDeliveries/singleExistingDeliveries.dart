@@ -21,8 +21,7 @@ class SingleExistingDeliveries extends StatefulWidget {
   final ExistingDeliveryOutDatum? existingDeliveryOutDatum;
   final String? existingDeliveryId;
   const SingleExistingDeliveries(
-      {Key? key, this.existingDeliveryInDatum, this.existingDeliveryId, this.existingDeliveryOutDatum})
-      : super(key: key);
+      {super.key, this.existingDeliveryInDatum, this.existingDeliveryId, this.existingDeliveryOutDatum});
 
   @override
   State<SingleExistingDeliveries> createState() => _SingleExistingDeliveriesState();

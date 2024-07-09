@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../deliveryIn/createNewDelivery.dart';
 
 class DeliveryOut extends StatefulWidget {
-  const DeliveryOut({Key? key}) : super(key: key);
+  const DeliveryOut({super.key});
 
   @override
   State<DeliveryOut> createState() => _DeliveryOutState();

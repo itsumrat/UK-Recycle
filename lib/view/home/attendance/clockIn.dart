@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class Clicking extends StatefulWidget {
-  const Clicking({Key? key}) : super(key: key);
+  const Clicking({super.key});
 
   @override
   State<Clicking> createState() => _ClickingState();

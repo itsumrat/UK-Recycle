@@ -18,7 +18,7 @@ class ShowNewlyCreateDeliveryOutSingleTrx extends StatefulWidget {
   final ExistingDeliveryOutDatum?  existingDeliveryInDatum;
   final String? existingDeliveryId;
 
-  const ShowNewlyCreateDeliveryOutSingleTrx({Key? key, this.trxId, this.existingDeliveryInDatum, this.existingDeliveryId}) : super(key: key);
+  const ShowNewlyCreateDeliveryOutSingleTrx({super.key, this.trxId, this.existingDeliveryInDatum, this.existingDeliveryId});
 
   @override
   State<ShowNewlyCreateDeliveryOutSingleTrx> createState() => _ShowNewlyCreateDeliveryOutSingleTrxState();

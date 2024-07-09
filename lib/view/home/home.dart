@@ -15,7 +15,7 @@ import 'dalivery/delivery_out/deliveryOut.dart';
 import 'productions/productions.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();

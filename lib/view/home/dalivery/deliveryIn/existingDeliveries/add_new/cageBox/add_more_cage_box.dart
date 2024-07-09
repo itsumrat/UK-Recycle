@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 
 class AddMoreCageBox extends StatefulWidget {
-  const AddMoreCageBox({Key? key}) : super(key: key);
+  const AddMoreCageBox({super.key});
 
   @override
   State<AddMoreCageBox> createState() => _AddMoreCageBoxState();

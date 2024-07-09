@@ -8,7 +8,7 @@ import 'showPiecesPallet.dart';
 
 
 class AddMorePiecesPallet extends StatefulWidget {
-  const AddMorePiecesPallet({Key? key}) : super(key: key);
+  const AddMorePiecesPallet({super.key});
 
   @override
   State<AddMorePiecesPallet> createState() => _AddMorePiecesPalletState();

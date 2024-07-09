@@ -14,7 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ShowNewlyCreateDeliveryOut extends StatefulWidget {
   final String? deliveryId;
-  const ShowNewlyCreateDeliveryOut({Key? key, this.deliveryId}) : super(key: key);
+  const ShowNewlyCreateDeliveryOut({super.key, this.deliveryId});
 
   @override
   State<ShowNewlyCreateDeliveryOut> createState() => _ShowNewlyCreateDeliveryOutState();

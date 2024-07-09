@@ -10,7 +10,7 @@ import 'add_more_pieces_pallet.dart';
 
 
 class ShowPiecesPallet extends StatefulWidget {
-  const ShowPiecesPallet({Key? key}) : super(key: key);
+  const ShowPiecesPallet({super.key});
 
   @override
   State<ShowPiecesPallet> createState() => _ShowPiecesPalletState();

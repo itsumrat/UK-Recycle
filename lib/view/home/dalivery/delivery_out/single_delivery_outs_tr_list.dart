@@ -17,8 +17,7 @@ class DeliveryOutsTransactionsList extends StatefulWidget {
   final SingleExistingDeliveryOutModel? singleDeliveryOutModel;
   final ExistingDeliveryOutDatum? existingDeliveryOutDatum;
 
-  const DeliveryOutsTransactionsList({Key? key, this.singleDeliveryOutModel, this.existingDeliveryOutDatum})
-      : super(key: key);
+  const DeliveryOutsTransactionsList({super.key, this.singleDeliveryOutModel, this.existingDeliveryOutDatum});
 
   @override
   State<DeliveryOutsTransactionsList> createState() => _DeliveryOutsTransactionsListState();

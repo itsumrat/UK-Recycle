@@ -12,8 +12,8 @@ import 'existingDeliveries/existingDeliveries.dart';
 
 class DeliveryIn extends StatefulWidget {
   const DeliveryIn({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<DeliveryIn> createState() => _DeliveryInState();
