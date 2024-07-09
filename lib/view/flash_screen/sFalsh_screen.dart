@@ -112,28 +112,18 @@ class _SFlashScreenState extends State<SFlashScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           index != pagesLength - 1 ? _skipButton(setIndex: setIndex) : const Center(),
-                          // Indic(
-                          //   netDragPercent: dragDistance,
-                          //   pagesLength: pagesLength,
-                          //   indicator: Indicator(
-                          //     activeIndicator: const ActiveIndicator(
-                          //       color: AppColor.mainColor,
-                          //     ),
-                          //     indicatorDesign: IndicatorDesign.polygon(
-                          //       polygonDesign: PolygonDesign(
-                          //         polygon: DesignType.polygon_circle,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                           Indicator<LinePainter>(
                             painter: LinePainter(
                               slideDirection: slideDirection,
                               currentPageIndex: currentIndex,
                               pagesLength: pagesLength,
                               netDragPercent: netDragDistance,
-                              activePainter: Paint()..color = AppColor.mainColor,
-                              inactivePainter: Paint()..color = AppColor.mainColor.withOpacity(0.5),
+                              activePainter: Paint()
+                                ..color = AppColor.mainColor
+                                ..strokeWidth = 2.5,
+                              inactivePainter: Paint()
+                                ..color = AppColor.mainColor.withOpacity(0.5)
+                                ..strokeWidth = 2.5,
                               lineWidth: 20,
                               translate: false,
                             ),

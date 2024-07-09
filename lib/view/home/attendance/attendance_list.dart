@@ -67,8 +67,8 @@ class _AttendanceListState extends State<AttendanceList> {
           ? const Center(
               child: AppLoader(),
             )
-          : SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
+          : Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20),
               child: Column(
                 children: [
                   const Text('Date:'),
@@ -123,13 +123,13 @@ class _AttendanceListState extends State<AttendanceList> {
                   const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height - 150,
+                  Expanded(
                     child: Builder(builder: (context) {
                       return _searchAllAttendanceList.isNotEmpty
                           ? ListView.builder(
                               shrinkWrap: true,
                               itemCount: _searchAllAttendanceList.length,
+                              physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
                               itemBuilder: (_, index) {
                                 return InkWell(
                                   child: Container(
@@ -186,6 +186,7 @@ class _AttendanceListState extends State<AttendanceList> {
                               ? ListView.builder(
                                   shrinkWrap: true,
                                   itemCount: _allAttendanceList.length,
+                                  physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
                                   itemBuilder: (_, index) {
                                     return InkWell(
                                       child: Container(

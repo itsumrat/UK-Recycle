@@ -24,38 +24,31 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: SafeArea(
-          child: Scaffold(
-            backgroundColor: AppColor.white,
-            appBar: AppBar(
-              backgroundColor: AppColor.white,
-              elevation: 0,
-              centerTitle: true,
-              leading: IconButton(
-                onPressed: appBarOnBack,
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: AppColor.black,
-                ),
-              ),
-              title: Text(
-                "$appBarTitle",
-                style: TextStyle(fontSize: textSize, color: AppColor.black, fontWeight: FontWeight.w500),
-              ),
-            ),
-            body: body,
-            bottomNavigationBar: showBottomBar
-                ? bottomNavigationBar ??
-                    const AppBottomNavigation(
-                      pageIndex: 0,
-                    )
-                : null,
-            floatingActionButton: floatingActionButton,
+      backgroundColor: AppColor.white,
+      appBar: AppBar(
+        backgroundColor: AppColor.white,
+        elevation: 0,
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: appBarOnBack,
+          icon: const Icon(
+            Icons.arrow_back,
+            color: AppColor.black,
           ),
         ),
+        title: Text(
+          "$appBarTitle",
+          style: TextStyle(fontSize: textSize, color: AppColor.black, fontWeight: FontWeight.w500),
+        ),
       ),
+      body: SafeArea(child: body),
+      bottomNavigationBar: showBottomBar
+          ? bottomNavigationBar ??
+              const AppBottomNavigation(
+                pageIndex: 0,
+              )
+          : null,
+      floatingActionButton: floatingActionButton,
     );
   }
 }
