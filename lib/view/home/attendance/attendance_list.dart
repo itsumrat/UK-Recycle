@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:crm/controller/attendance_controller/attendance_controller.dart';
 import 'package:crm/model/attendance_model/attendance_model.dart';
 import 'package:crm/utility/utility.dart';
@@ -44,10 +42,6 @@ class _AttendanceListState extends State<AttendanceList> {
             DateTime.now().month == element.date!.month &&
             DateTime.now().year == element.date!.year;
       }).toList());
-      log("allAttendanceList == ${_allAttendanceList.length}", name: "AttendanceList");
-      for (var i in _allAttendanceList) {
-        log("allAttendanceList == ${i.toJson()}", name: "AttendanceList");
-      }
     });
     setState(() => isLoading = false);
   }
@@ -167,10 +161,28 @@ class _AttendanceListState extends State<AttendanceList> {
                                             child: Container(
                                               padding: const EdgeInsets.only(left: 15, right: 15, bottom: 5, top: 5),
                                               decoration: BoxDecoration(
-                                                  color: index.isEven ? Colors.red : Colors.green,
+                                                  color: () {
+                                                    switch (_allAttendanceList[index].status) {
+                                                      case 0:
+                                                        return Colors.red;
+                                                      case 1:
+                                                        return Colors.green;
+                                                      default:
+                                                        return Colors.blue;
+                                                    }
+                                                  }(),
                                                   borderRadius: BorderRadius.circular(5)),
                                               child: Text(
-                                                index.isEven ? "A" : "P",
+                                                () {
+                                                  switch (_allAttendanceList[index].status) {
+                                                    case 0:
+                                                      return "A";
+                                                    case 1:
+                                                      return "P";
+                                                    default:
+                                                      return "H";
+                                                  }
+                                                }(),
                                                 style: const TextStyle(
                                                     fontWeight: FontWeight.w400, color: Colors.white, fontSize: 16),
                                               ),
@@ -210,7 +222,7 @@ class _AttendanceListState extends State<AttendanceList> {
                                                     color: Colors.grey.shade200,
                                                     borderRadius: BorderRadius.circular(5)),
                                                 child: Text(
-                                                  "${_allAttendanceList[index].checkIn} - ${_allAttendanceList[index].checkOut}",
+                                                  "${_allAttendanceList[index].checkIn ?? "N\\A"} - ${_allAttendanceList[index].checkOut ?? "N\\A"}",
                                                   style: const TextStyle(
                                                       fontWeight: FontWeight.w400,
                                                       color: AppColor.textColor,
