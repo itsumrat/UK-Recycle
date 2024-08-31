@@ -8,6 +8,7 @@ import 'package:crm/view_controller/commonWidget.dart';
 import 'package:crm/view_controller/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 enum ListFilter { today, all }
 
@@ -186,7 +187,7 @@ class _ProductoinsState extends State<Productoins> {
                                             : BorderSide.none,
                                       )),
                                       child: Text(
-                                        "${data.productionId}",
+                                        "${data.productionId}/${data.createdAt != null ? DateFormat("dd-MM-yyyy").format(data.createdAt!) : "N\\A"}/${data.assignedTo?.name}/${data.tables!.name}",
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w500, color: Colors.black54, fontSize: 16),
                                       ),

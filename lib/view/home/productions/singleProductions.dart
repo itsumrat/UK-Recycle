@@ -7,7 +7,6 @@ import 'package:crm/view/home/productions/singleProductionInput.dart';
 import 'package:crm/view_controller/appWidgets.dart';
 import 'package:crm/view_controller/commonWidget.dart';
 import 'package:crm/view_controller/loader.dart';
-import 'package:crm/widgets/app_title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,14 +24,13 @@ class SingleProductions extends StatefulWidget {
 }
 
 class _SingleProductionsState extends State<SingleProductions> {
-  Future<SingleProductionModel>? getSingleProductionFuture;
+  Future<SingleProductionModel?>? getSingleProductionFuture;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _getUserInfo();
-    getSingleProductionFuture = ProductionController.getSingleProduction(id: widget.id.toString());
   }
 
   var user_name, user_id, role;
@@ -48,10 +46,10 @@ class _SingleProductionsState extends State<SingleProductions> {
   @override
   Widget build(BuildContext context) {
     return AppWidget(
-      appBarTitle: "Production ID: ${widget.productionModel!.productionId}",
+      appBarTitle: "",
       appBarOnBack: () => Get.to(const Productoins()),
-      body: FutureBuilder<SingleProductionModel>(
-          future: getSingleProductionFuture,
+      body: FutureBuilder<SingleProductionModel?>(
+          future: ProductionController.getSingleProduction(id: widget.id.toString()),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -59,13 +57,19 @@ class _SingleProductionsState extends State<SingleProductions> {
               );
             } else if (snapshot.hasData) {
               return SingleChildScrollView(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 30, bottom: 30),
+                padding: const EdgeInsets.only(left: 50, right: 50, bottom: 30),
                 child: Column(
                   children: [
                     // const SizedBox(
                     //   height: 20,
                     // ),
-                    Center(child: AppTitleText(text: "Production: ${snapshot.data!.data!.production!.productionId}")),
+                    Center(
+                      child: Text(
+                        "Production:\n${snapshot.data!.data!.production!.productionIdString}",
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                      ),
+                    ),
                     const SizedBox(
                       height: 30,
                     ),

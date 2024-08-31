@@ -36,7 +36,7 @@ class DeliveryOutTrListModel {
 
 class Data {
   final List<Transaction>? transaction;
-  final int? weight;
+  final num? weight;
 
   Data({
     this.transaction,

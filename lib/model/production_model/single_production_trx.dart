@@ -20,22 +20,22 @@ class SingleProductionTrx {
   });
 
   factory SingleProductionTrx.fromJson(Map<String, dynamic> json) => SingleProductionTrx(
-    success: json["success"],
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
-    message: json["message"],
-  );
+        success: json["success"],
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "data": data?.toJson(),
-    "message": message,
-  };
+        "success": success,
+        "data": data?.toJson(),
+        "message": message,
+      };
 }
 
 class Data {
   final int? id;
   final int? productionId;
-  final int? weight;
+  final num? weight;
   final int? grade;
   final int? status;
   final DateTime? createdAt;
@@ -54,26 +54,26 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    id: json["id"],
-    productionId: json["production_id"],
-    weight: json["weight"],
-    grade: json["grade"],
-    status: json["status"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-    grades: json["grades"] == null ? null : Grades.fromJson(json["grades"]),
-  );
+        id: json["id"],
+        productionId: json["production_id"],
+        weight: json["weight"],
+        grade: json["grade"],
+        status: json["status"],
+        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+        grades: json["grades"] == null ? null : Grades.fromJson(json["grades"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "production_id": productionId,
-    "weight": weight,
-    "grade": grade,
-    "status": status,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
-    "grades": grades?.toJson(),
-  };
+        "id": id,
+        "production_id": productionId,
+        "weight": weight,
+        "grade": grade,
+        "status": status,
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+        "grades": grades?.toJson(),
+      };
 }
 
 class Grades {
@@ -96,22 +96,22 @@ class Grades {
   });
 
   factory Grades.fromJson(Map<String, dynamic> json) => Grades(
-    id: json["id"],
-    gradeId: json["grade_id"],
-    name: json["name"],
-    weight: json["weight"],
-    status: json["status"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-  );
+        id: json["id"],
+        gradeId: json["grade_id"],
+        name: json["name"],
+        weight: json["weight"],
+        status: json["status"],
+        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "grade_id": gradeId,
-    "name": name,
-    "weight": weight,
-    "status": status,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
-  };
+        "id": id,
+        "grade_id": gradeId,
+        "name": name,
+        "weight": weight,
+        "status": status,
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+      };
 }

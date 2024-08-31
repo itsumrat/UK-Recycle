@@ -68,10 +68,10 @@ class _SingleProductionInputState extends State<SingleProductionInput> {
   @override
   Widget build(BuildContext context) {
     return AppWidget(
-      appBarTitle: "Production ID: ${widget.production?.productionId}",
+      appBarTitle: "",
       appBarOnBack: () => Get.back(),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         child: FutureBuilder<int>(
             future: gradeFuture,
             builder: (context, snapshot) {
@@ -82,12 +82,16 @@ class _SingleProductionInputState extends State<SingleProductionInput> {
               }
               return Column(
                 children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
                   const Center(
                     child: AppTitleText(
                       text: "Transaction",
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      widget.production!.productionIdString,
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   const SizedBox(
@@ -105,14 +109,17 @@ class _SingleProductionInputState extends State<SingleProductionInput> {
                         width: 20,
                       ),
                       Expanded(
-                          child: TextFormField(
-                        controller: _weight,
-                        decoration: InputDecoration(
+                        child: TextFormField(
+                          controller: _weight,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
                             fillColor: Colors.grey.shade200,
                             filled: true,
                             border: const OutlineInputBorder(borderSide: BorderSide.none),
-                            hintText: "KG"),
-                      )),
+                            hintText: "KG",
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(

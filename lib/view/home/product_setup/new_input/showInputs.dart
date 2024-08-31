@@ -21,7 +21,7 @@ class ShowNewlyCretaeProduction extends StatefulWidget {
 }
 
 class _ShowNewlyCretaeProductionState extends State<ShowNewlyCretaeProduction> {
-  Future<SingleProductionModel>? _getSingleProduction;
+  Future<SingleProductionModel?>? _getSingleProduction;
 
   var userId, userName, date;
 
@@ -49,7 +49,7 @@ class _ShowNewlyCretaeProductionState extends State<ShowNewlyCretaeProduction> {
     return AppWidget(
         appBarOnBack: () => Get.back(),
         appBarTitle: "Production",
-        body: FutureBuilder<SingleProductionModel>(
+        body: FutureBuilder<SingleProductionModel?>(
             future: _getSingleProduction,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {

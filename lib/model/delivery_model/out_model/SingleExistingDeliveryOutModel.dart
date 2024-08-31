@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-SingleExistingDeliveryOutModel singleExistingDeliveryOutModelFromJson(String str) => SingleExistingDeliveryOutModel.fromJson(json.decode(str));
+SingleExistingDeliveryOutModel singleExistingDeliveryOutModelFromJson(String str) =>
+    SingleExistingDeliveryOutModel.fromJson(json.decode(str));
 
 String singleExistingDeliveryOutModelToJson(SingleExistingDeliveryOutModel data) => json.encode(data.toJson());
 
@@ -20,21 +21,21 @@ class SingleExistingDeliveryOutModel {
   });
 
   factory SingleExistingDeliveryOutModel.fromJson(Map<String, dynamic> json) => SingleExistingDeliveryOutModel(
-    success: json["success"],
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
-    message: json["message"],
-  );
+        success: json["success"],
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "data": data?.toJson(),
-    "message": message,
-  };
+        "success": success,
+        "data": data?.toJson(),
+        "message": message,
+      };
 }
 
 class Data {
   final Delivery? delivery;
-  final int? weight;
+  final num? weight;
 
   Data({
     this.delivery,
@@ -42,14 +43,14 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    delivery: json["delivery"] == null ? null : Delivery.fromJson(json["delivery"]),
-    weight: json["weight"],
-  );
+        delivery: json["delivery"] == null ? null : Delivery.fromJson(json["delivery"]),
+        weight: json["weight"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "delivery": delivery?.toJson(),
-    "weight": weight,
-  };
+        "delivery": delivery?.toJson(),
+        "weight": weight,
+      };
 }
 
 class Delivery {
@@ -96,48 +97,48 @@ class Delivery {
   });
 
   factory Delivery.fromJson(Map<String, dynamic> json) => Delivery(
-    id: json["id"],
-    date: json["date"] == null ? null : DateTime.parse(json["date"]),
-    deliveryOutId: json["delivery_out_id"],
-    categoryId: json["category_id"],
-    deliveryType: json["delivery_type"],
-    customerId: json["customer_id"],
-    measurementType: json["Measurement_type"],
-    addedBy: json["added_by"],
-    caseId: json["case_id"],
-    pallet: json["pallet"],
-    deliveryCase: json["case"],
-    piece: json["piece"],
-    status: json["status"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-    user: json["user"],
-    categories: json["categories"] == null ? null : Categories.fromJson(json["categories"]),
-    customer: json["customer"] == null ? null : Customer.fromJson(json["customer"]),
-    measurement: json["measurement"] == null ? null : Measurement.fromJson(json["measurement"]),
-  );
+        id: json["id"],
+        date: json["date"] == null ? null : DateTime.parse(json["date"]),
+        deliveryOutId: json["delivery_out_id"],
+        categoryId: json["category_id"],
+        deliveryType: json["delivery_type"],
+        customerId: json["customer_id"],
+        measurementType: json["Measurement_type"],
+        addedBy: json["added_by"],
+        caseId: json["case_id"],
+        pallet: json["pallet"],
+        deliveryCase: json["case"],
+        piece: json["piece"],
+        status: json["status"],
+        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+        user: json["user"],
+        categories: json["categories"] == null ? null : Categories.fromJson(json["categories"]),
+        customer: json["customer"] == null ? null : Customer.fromJson(json["customer"]),
+        measurement: json["measurement"] == null ? null : Measurement.fromJson(json["measurement"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "date": date?.toIso8601String(),
-    "delivery_out_id": deliveryOutId,
-    "category_id": categoryId,
-    "delivery_type": deliveryType,
-    "customer_id": customerId,
-    "Measurement_type": measurementType,
-    "added_by": addedBy,
-    "case_id": caseId,
-    "pallet": pallet,
-    "case": deliveryCase,
-    "piece": piece,
-    "status": status,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
-    "user": user,
-    "categories": categories?.toJson(),
-    "customer": customer?.toJson(),
-    "measurement": measurement?.toJson(),
-  };
+        "id": id,
+        "date": date?.toIso8601String(),
+        "delivery_out_id": deliveryOutId,
+        "category_id": categoryId,
+        "delivery_type": deliveryType,
+        "customer_id": customerId,
+        "Measurement_type": measurementType,
+        "added_by": addedBy,
+        "case_id": caseId,
+        "pallet": pallet,
+        "case": deliveryCase,
+        "piece": piece,
+        "status": status,
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+        "user": user,
+        "categories": categories?.toJson(),
+        "customer": customer?.toJson(),
+        "measurement": measurement?.toJson(),
+      };
 }
 
 class Categories {
@@ -158,22 +159,22 @@ class Categories {
   });
 
   factory Categories.fromJson(Map<String, dynamic> json) => Categories(
-    id: json["id"],
-    categoryId: json["category_id"],
-    name: json["name"],
-    status: json["status"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-  );
+        id: json["id"],
+        categoryId: json["category_id"],
+        name: json["name"],
+        status: json["status"],
+        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "category_id": categoryId,
-    "name": name,
-    "status": status,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
-  };
+        "id": id,
+        "category_id": categoryId,
+        "name": name,
+        "status": status,
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+      };
 }
 
 class Customer {
@@ -198,26 +199,26 @@ class Customer {
   });
 
   factory Customer.fromJson(Map<String, dynamic> json) => Customer(
-    id: json["id"],
-    customerId: json["customer_id"],
-    name: json["name"],
-    email: json["email"],
-    address: json["address"],
-    status: json["status"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-  );
+        id: json["id"],
+        customerId: json["customer_id"],
+        name: json["name"],
+        email: json["email"],
+        address: json["address"],
+        status: json["status"],
+        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "customer_id": customerId,
-    "name": name,
-    "email": email,
-    "address": address,
-    "status": status,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
-  };
+        "id": id,
+        "customer_id": customerId,
+        "name": name,
+        "email": email,
+        "address": address,
+        "status": status,
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+      };
 }
 
 class Measurement {
@@ -234,16 +235,16 @@ class Measurement {
   });
 
   factory Measurement.fromJson(Map<String, dynamic> json) => Measurement(
-    id: json["id"],
-    name: json["name"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-  );
+        id: json["id"],
+        name: json["name"],
+        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
-  };
+        "id": id,
+        "name": name,
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
+      };
 }

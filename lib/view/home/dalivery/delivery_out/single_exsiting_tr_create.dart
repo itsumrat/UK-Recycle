@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'dart:developer';
 
 import 'package:crm/controller/cage_controller/cage_controller.dart';
 import 'package:crm/controller/delivery_controller%20/out_controller/delivery_out_controller.dart';
@@ -258,6 +259,7 @@ class _CreateSingleTrState extends State<CreateSingleTr> {
             deliveryTypeId: widget.existingDeliveryId.toString(),
             measurementId: widget.existingDeliveryInDatum!.measurement!.id.toString(),
             cageNo: selectedCageOn);
+        log("Response: ${res.body}", name: "Create Delivery Out Transaction");
         if (res.statusCode == 200) {
           AppSnackbar.appSnackbar("Transaction created success.", Colors.green, context);
 

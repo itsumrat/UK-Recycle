@@ -20,23 +20,23 @@ class GradeModel {
   });
 
   factory GradeModel.fromJson(Map<String, dynamic> json) => GradeModel(
-    success: json["success"],
-    data: json["data"] == null ? [] : List<GradeDatum>.from(json["data"]!.map((x) => GradeDatum.fromJson(x))),
-    message: json["message"],
-  );
+        success: json["success"],
+        data: json["data"] == null ? [] : List<GradeDatum>.from(json["data"]!.map((x) => GradeDatum.fromJson(x))),
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
-    "message": message,
-  };
+        "success": success,
+        "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+        "message": message,
+      };
 }
 
 class GradeDatum {
   final int? id;
   final String? gradeId;
   final String? name;
-  final int? weight;
+  final num? weight;
   final String? createdAt;
   final String? updatedAt;
 
@@ -50,20 +50,20 @@ class GradeDatum {
   });
 
   factory GradeDatum.fromJson(Map<String, dynamic> json) => GradeDatum(
-    id: json["id"],
-    gradeId: json["grade_id"],
-    name: json["name"],
-    weight: json["weight"],
-    createdAt: json["created_at"],
-    updatedAt: json["updated_at"],
-  );
+        id: json["id"],
+        gradeId: json["grade_id"],
+        name: json["name"],
+        weight: json["weight"],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "grade_id": gradeId,
-    "name": name,
-    "weight": weight,
-    "created_at": createdAt,
-    "updated_at": updatedAt,
-  };
+        "id": id,
+        "grade_id": gradeId,
+        "name": name,
+        "weight": weight,
+        "created_at": createdAt,
+        "updated_at": updatedAt,
+      };
 }
