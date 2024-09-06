@@ -11,18 +11,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../model/delivery_model/out_model/single_delveryout_trx_momdel.dart';
 
 class DeliveryOutController {
-  static Future<http.Response> addNewDeliveryOut(
-      {required String category_id,
-      required String customer_id,
-      required String assign_id,
-      required String measurement_type,
-      required String delivery_type}) async {
+  static Future<http.Response> addNewDeliveryOut({
+    // required String category_id,
+    required String customer_id,
+    required String assign_id,
+    required String measurement_type,
+    required String delivery_type,
+  }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     var userId = pref.getString("uid");
     print("user id == $userId");
     var res = await http.post(Uri.parse(AppConfig.DELIVERY_OUT_CREATE), body: {
-      "category_id": category_id,
+      // "category_id": category_id,
       "customer_id": customer_id,
       "measurement_type": measurement_type,
       "delivery_type": delivery_type,

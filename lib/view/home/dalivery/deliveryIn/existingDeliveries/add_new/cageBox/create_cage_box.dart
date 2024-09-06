@@ -4,9 +4,11 @@ import 'dart:core';
 
 import 'package:crm/controller/cage_controller/cage_controller.dart';
 import 'package:crm/controller/delivery_controller%20/in_controller/exstingDeliveryController.dart';
+import 'package:crm/controller/delivery_controller%20/in_controller/product_category_controller.dart';
 import 'package:crm/controller/user_controller/userController.dart';
 import 'package:crm/model/cage_model/cage_model.dart';
 import 'package:crm/model/delivery_model/in_model/deliveryin_model.dart';
+import 'package:crm/model/delivery_model/in_model/product_category_model.dart';
 import 'package:crm/model/user_model/allUserModel.dart';
 import 'package:crm/utility/app_const.dart';
 import 'package:crm/view/home/dalivery/deliveryIn/existingDeliveries/singleExistingDeliveries.dart';
@@ -45,6 +47,20 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
   CageDatum? selectedCageOn;
   String? selectUserName;
 
+  final List<ProductCategoryDatum> _productCategoryList = [];
+  bool isCategoryLoading = true;
+  void _getProductCategory() async {
+    var res = await DeliveryInProductCategoryController.getProductCategory();
+    for (var i in res!.data!) {
+      setState(() {
+        _productCategoryList.add(i);
+      });
+    }
+    setState(() {
+      isCategoryLoading = false;
+    });
+  }
+
   Future<AllUserModel>? allUserFuture;
   // final List<DeliveryDatum> _allDeliveryTypeList = [];
   // final List<ProductCategoryDatum> _allProductCategoryList = [];
@@ -58,37 +74,32 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
   //   }
   // }
 
-  // //get product category
-  // void _getProductCategoryList() async {
-  //   var res = await DeliveryInProductCategoryController.getProductCategory();
-  //   for (var i in res!.data!) {
-  //     setState(() {
-  //       _allProductCategoryList.add(i);
-  //     });
-  //   }
-  // }
-
   final List<CageDatum> _allCageList = [];
 
   void _getAllCageList() async {
     var res = await CageController.getCageNo();
     for (var i in res.data!) {
-      setState(() {
-        _allCageList.add(i);
-      });
+      _allCageList.add(i);
     }
+    if (widget.existingDeliveryInDatum!.measurement!.name == "Cage") {
+      _allCageList.add(CageDatum(
+        id: 0,
+        caseName: 'Free weight',
+      ));
+    }
+    setState(() {});
   }
 
   final weight = TextEditingController();
+  final cageWeight = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     allUserFuture = UserController.getAllUser(); // get all user
     dateTextController.text = AppConst.currentData(); //get current date
-    // _getDeliveryTypeList();
-    // _getProductCategoryList();
     _getAllCageList();
+    _getProductCategory();
   }
 
   @override
@@ -410,6 +421,67 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
                         //
                         //   ],
                         // ),
+
+                        Row(
+                          children: [
+                            const Expanded(
+                              child: Text(
+                                "Product Category",
+                                style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 15),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: isCategoryLoading
+                                  ? const Center(child: CircularProgressIndicator())
+                                  : DropdownButtonHideUnderline(
+                                      child: DropdownButton2<String>(
+                                        isExpanded: true,
+                                        hint: Text(
+                                          'Select Item',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Theme.of(context).hintColor,
+                                          ),
+                                        ),
+                                        items: _productCategoryList
+                                            .map((item) => DropdownMenuItem<String>(
+                                                  value: item.id.toString(),
+                                                  child: Text(
+                                                    item.name!,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList(),
+                                        value: selectedProductCategory,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            selectedProductCategory = value;
+                                          });
+                                        },
+                                        buttonStyleData: ButtonStyleData(
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
+                                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                                          height: 60,
+                                          width: 140,
+                                        ),
+                                        menuItemStyleData: const MenuItemStyleData(
+                                          height: 40,
+                                        ),
+                                      ),
+                                    ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         widget.existingDeliveryInDatum!.measurement!.name == "Cage"
                             ? Row(
                                 children: [
@@ -438,7 +510,7 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
                                             .map((item) => DropdownMenuItem<CageDatum>(
                                                   value: item,
                                                   child: Text(
-                                                    item.caseName!,
+                                                    item.caseName ?? '',
                                                     style: const TextStyle(
                                                       fontSize: 14,
                                                     ),
@@ -468,6 +540,35 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
                               )
                             : const Center(),
 
+                        if (selectedCageOn?.id == 0) ...[
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              const Expanded(
+                                child: Text(
+                                  "Cage Weight",
+                                  style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 15),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: TextFormField(
+                                  keyboardType: TextInputType.number,
+                                  controller: cageWeight,
+                                  decoration: InputDecoration(
+                                    fillColor: Colors.grey.shade200,
+                                    filled: true,
+                                    border: const OutlineInputBorder(borderSide: BorderSide.none),
+                                    hintText: "0 KG",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
                         const SizedBox(
                           height: 20,
                         ),
@@ -568,12 +669,18 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
       AppSnackbar.appSnackbar("Please enter weight.", Colors.red, context);
       return;
     }
+    if (selectedProductCategory == null) {
+      AppSnackbar.appSnackbar("Please select Category.", Colors.red, context);
+      return;
+    }
     setState(() => isAdding = true);
     var res = await DeliveryInController.addTranscations(
-        weight: weight.text,
-        deliveryTypeId: widget.deliveryId.toString(),
-        measurementId: widget.existingDeliveryInDatum!.measurement!.id.toString(),
-        cageNo: selectedCageOn);
+      weight: weight.text,
+      deliveryTypeId: widget.deliveryId.toString(),
+      measurementId: widget.existingDeliveryInDatum!.measurement!.id.toString(),
+      cageNo: selectedCageOn,
+      productCategoryId: selectedProductCategory!,
+    );
     if (res.statusCode == 200) {
       AppSnackbar.appSnackbar("Transaction created success.", Colors.green, context);
       //Get.to(SingleExistingDeliveries(existingDeliveryInDatum: widget.existingDeliveryInDatum, existingDeliveryId: widget.deliveryId.toString(),));

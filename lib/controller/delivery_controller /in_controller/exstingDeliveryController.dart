@@ -61,11 +61,13 @@ class DeliveryInController {
   }
 
   //Single existing model
-  static Future<http.Response> addTranscations(
-      {required String deliveryTypeId,
-      required CageDatum? cageNo,
-      required String measurementId,
-      required String weight}) async {
+  static Future<http.Response> addTranscations({
+    required String deliveryTypeId,
+    required CageDatum? cageNo,
+    required String measurementId,
+    required String weight,
+    required String productCategoryId,
+  }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     print("delivery id == $deliveryTypeId");
@@ -74,6 +76,7 @@ class DeliveryInController {
       "delivery_id": deliveryTypeId,
       "measurement": measurementId,
       if (cageNo != null) "case_id": cageNo.id.toString(),
+      "category_id": productCategoryId,
     };
     // var withCageNoData = {
     //   "weight": weight,

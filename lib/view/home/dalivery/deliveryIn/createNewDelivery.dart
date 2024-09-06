@@ -44,7 +44,7 @@ class _AddNewDeliveryState extends State<AddNewDelivery> {
   String? selectedCustomerId;
   String? selectedMeasurementId;
   String? selectedDeliveryType;
-  String? selectedProductCategory;
+  // String? selectedProductCategory;
   String? selectedAssignTo;
 
   final userId = TextEditingController();
@@ -489,64 +489,64 @@ class _AddNewDeliveryState extends State<AddNewDelivery> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      const Expanded(
-                        child: Text(
-                          "Product Category",
-                          style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 15),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton2<String>(
-                            isExpanded: true,
-                            hint: Text(
-                              'Select Item',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Theme.of(context).hintColor,
-                              ),
-                            ),
-                            items: _productCategoryList
-                                .map((item) => DropdownMenuItem<String>(
-                                      value: item.id.toString(),
-                                      child: Text(
-                                        item.name!,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ))
-                                .toList(),
-                            value: selectedProductCategory,
-                            onChanged: (String? value) {
-                              setState(() {
-                                selectedProductCategory = value;
-                              });
-                            },
-                            buttonStyleData: ButtonStyleData(
-                              decoration:
-                                  BoxDecoration(color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
-                              height: 60,
-                              width: 140,
-                            ),
-                            menuItemStyleData: const MenuItemStyleData(
-                              height: 40,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Row(
+                  //   children: [
+                  //     const Expanded(
+                  //       child: Text(
+                  //         "Product Category",
+                  //         style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 15),
+                  //       ),
+                  //     ),
+                  //     const SizedBox(
+                  //       width: 20,
+                  //     ),
+                  //     Expanded(
+                  //       flex: 2,
+                  //       child: DropdownButtonHideUnderline(
+                  //         child: DropdownButton2<String>(
+                  //           isExpanded: true,
+                  //           hint: Text(
+                  //             'Select Item',
+                  //             style: TextStyle(
+                  //               fontSize: 14,
+                  //               color: Theme.of(context).hintColor,
+                  //             ),
+                  //           ),
+                  //           items: _productCategoryList
+                  //               .map((item) => DropdownMenuItem<String>(
+                  //                     value: item.id.toString(),
+                  //                     child: Text(
+                  //                       item.name!,
+                  //                       style: const TextStyle(
+                  //                         fontSize: 14,
+                  //                       ),
+                  //                     ),
+                  //                   ))
+                  //               .toList(),
+                  //           value: selectedProductCategory,
+                  //           onChanged: (String? value) {
+                  //             setState(() {
+                  //               selectedProductCategory = value;
+                  //             });
+                  //           },
+                  //           buttonStyleData: ButtonStyleData(
+                  //             decoration:
+                  //                 BoxDecoration(color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
+                  //             padding: const EdgeInsets.symmetric(horizontal: 16),
+                  //             height: 60,
+                  //             width: 140,
+                  //           ),
+                  //           menuItemStyleData: const MenuItemStyleData(
+                  //             height: 40,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -665,10 +665,10 @@ class _AddNewDeliveryState extends State<AddNewDelivery> {
     setState(() => isAdding = true);
     var res = await DeliveryController.addNeDelivery(
         deliveryTypeID: selectedDeliveryType!,
-        productCategoryId: selectedProductCategory!,
+        // productCategoryId: selectedProductCategory!,
         suplierId: selectedSupplierId!,
         measurementTypeId: selectedMeasurementId!,
-        assign_to: role == AppConst.staffRole ? userId.text : selectedAssignTo!);
+        assignTo: role == AppConst.staffRole ? userId.text : selectedAssignTo!);
     if (res.statusCode == 200) {
       AppSnackbar.appSnackbar("New delivery in created success.", Colors.green, context);
       Get.to(ShowCageBox(
@@ -684,7 +684,7 @@ class _AddNewDeliveryState extends State<AddNewDelivery> {
   void _addNewDeliveryOut() async {
     setState(() => isAdding = true);
     var res = await DeliveryOutController.addNewDeliveryOut(
-        category_id: selectedProductCategory!,
+        // category_id: selectedProductCategory!,
         measurement_type: selectedMeasurementId!,
         delivery_type: selectedDeliveryType!,
         customer_id: selectedCustomerId!,
