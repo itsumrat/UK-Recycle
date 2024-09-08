@@ -199,25 +199,26 @@ class _ShowCageBoxState extends State<ShowCageBox> {
                     const SizedBox(
                       height: 40,
                     ),
-                    Row(
-                      children: [
-                        const Expanded(
-                          child: Text(
-                            "Product Type: ",
-                            style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 15),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Expanded(
-                            flex: 2,
-                            child: Text(
-                              "${snapshot.data!.data!.delivery!.categories!.name}",
-                              style: const TextStyle(color: Colors.black54, fontWeight: FontWeight.w400, fontSize: 18),
-                            ))
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     const Expanded(
+                    //       child: Text(
+                    //         "Product Type: ",
+                    //         style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 15),
+                    //       ),
+                    //     ),
+                    //     const SizedBox(
+                    //       width: 20,
+                    //     ),
+                    //     Expanded(
+                    //       flex: 2,
+                    //       child: Text(
+                    //         "${snapshot.data!.data!.delivery!.categories!.name}",
+                    //         style: const TextStyle(color: Colors.black54, fontWeight: FontWeight.w400, fontSize: 18),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
 
                     // snapshot.data!.data!.delivery!.measurement!.name == "Cage" ? Column(
                     //   children: [

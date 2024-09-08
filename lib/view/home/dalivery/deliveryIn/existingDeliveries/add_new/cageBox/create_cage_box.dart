@@ -81,12 +81,6 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
     for (var i in res.data!) {
       _allCageList.add(i);
     }
-    if (widget.existingDeliveryInDatum!.measurement!.name == "Cage") {
-      _allCageList.add(CageDatum(
-        id: 0,
-        caseName: 'Free weight',
-      ));
-    }
     setState(() {});
   }
 
@@ -540,7 +534,7 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
                               )
                             : const Center(),
 
-                        if (selectedCageOn?.id == 0) ...[
+                        if (selectedCageOn?.caseName == 'Free Weight') ...[
                           const SizedBox(height: 20),
                           Row(
                             children: [

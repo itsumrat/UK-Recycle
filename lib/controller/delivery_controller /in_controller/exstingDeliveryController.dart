@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:crm/appConfig.dart';
 import 'package:crm/model/cage_model/cage_model.dart';
@@ -84,10 +85,11 @@ class DeliveryInController {
     //   "measurement": measurementId,
     //   "case_id": cageNo?.id,
     // };
+    log("Response Data: $data", name: "Data");
     var res = await http.post(Uri.parse(AppConfig.DELIVERY_IN_TRANSCATION),
         headers: {"Authorization": "Bearer $token"}, body: data);
-    print(res.statusCode);
-    print(res.body);
+    log(res.statusCode.toString(), name: "statuscode");
+    log(res.body.substring(0, 500).toString(), name: "body");
     return res;
   }
 
