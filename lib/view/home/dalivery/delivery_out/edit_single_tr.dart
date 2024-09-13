@@ -50,6 +50,7 @@ class _EditDeliveryOutTranscationState extends State<EditDeliveryOutTranscation>
   final productCategory = TextEditingController();
   final cageNo = TextEditingController();
   final weight = TextEditingController();
+  final cageWeight = TextEditingController();
 
   final List<CageDatum> _allCageList = [];
   //get product category
@@ -71,13 +72,13 @@ class _EditDeliveryOutTranscationState extends State<EditDeliveryOutTranscation>
     userId.text = widget.singleTransaction?.user?.userId?.toString() ?? '';
     date.text = AppConst.formetData(widget.singleTransaction!.date);
     weight.text = widget.singleTransaction!.productWeight?.toString() ?? '';
+    cageWeight.text = widget.singleTransaction!.weight?.toString() ?? '';
   }
 
   @override
   Widget build(BuildContext context) {
     return AppWidget(
-      appBarTitle:
-          "Transaction sad ID: ${widget.singleDelivery!.data!.delivery!.deliveryOutId}/${widget.singleTransaction?.id.toString()}",
+      appBarTitle: "${widget.singleDelivery!.data!.delivery!.deliveryOutId}/${widget.singleTransaction?.id.toString()}",
       textSize: 20,
       appBarOnBack: () => Get.back(),
       body: SingleChildScrollView(
@@ -147,6 +148,35 @@ class _EditDeliveryOutTranscationState extends State<EditDeliveryOutTranscation>
             const SizedBox(
               height: 20,
             ),
+            if (selectedCageOn?.caseName == 'Free Weight') ...[
+              Row(
+                children: [
+                  const Expanded(
+                    child: Text(
+                      "Cage Weight",
+                      style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 15),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: cageWeight,
+                      decoration: InputDecoration(
+                        fillColor: Colors.grey.shade200,
+                        filled: true,
+                        border: const OutlineInputBorder(borderSide: BorderSide.none),
+                        hintText: "0 KG",
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+            ],
             Row(
               children: [
                 Expanded(

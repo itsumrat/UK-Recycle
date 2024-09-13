@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:crm/appConfig.dart';
 import 'package:crm/model/cage_model/cage_model.dart';
@@ -21,16 +22,20 @@ class DeliveryOutController {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     var userId = pref.getString("uid");
-    print("user id == $userId");
-    var res = await http.post(Uri.parse(AppConfig.DELIVERY_OUT_CREATE), body: {
-      // "category_id": category_id,
-      "customer_id": customer_id,
-      "measurement_type": measurement_type,
-      "delivery_type": delivery_type,
-      "assigned_to": assign_id,
-    }, headers: {
-      "Authorization": "Bearer $token"
-    });
+    log("user id == $userId");
+    log("BODY: customer_id: $customer_id, assign_id: $assign_id, measurement_type: $measurement_type, delivery_type: $delivery_type",
+        name: "BODY");
+    var res = await http.post(
+      Uri.parse(AppConfig.DELIVERY_OUT_CREATE),
+      body: {
+        // "category_id": category_id,
+        "customer_id": customer_id,
+        "measurement_type": measurement_type,
+        "delivery_type": delivery_type,
+        "assigned_to": assign_id,
+      },
+      headers: {"Authorization": "Bearer $token"},
+    );
     return res;
   }
 
@@ -48,51 +53,57 @@ class DeliveryOutController {
     var token = pref.getString("token");
     var res =
         await http.get(Uri.parse("${AppConfig.DELIVERY_OUT_CREATE}/$id"), headers: {"Authorization": "Bearer $token"});
-    print(res.statusCode);
-    print(res.body);
+    log(res.statusCode.toString(), name: "Status Code");
+    log(res.body, name: "Response Body");
     return SingleExistingDeliveryOutModel.fromJson(jsonDecode(res.body));
   }
 
   //get single delivery in
   static Future<DeliveryOutTrListModel> getSingleDeliveryOutTrList({required String id}) async {
-    print("delivery id === $id");
+    log("delivery id === $id");
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     var res = await http
         .get(Uri.parse("${AppConfig.TRANSCATION_BY_DELIVERYOUT}$id"), headers: {"Authorization": "Bearer $token"});
-    print(res.statusCode);
-    print(res.body);
+    log(res.statusCode.toString(), name: "Status Code");
+    log(res.body, name: "Response Body");
     return DeliveryOutTrListModel.fromJson(jsonDecode(res.body));
   }
 
   //get single delivery in
   static Future<SingleDeliveryOutTrxModel> getSingleDeliveryOutTrx({required String id}) async {
-    print("delivery id === $id");
+    log("delivery id === $id");
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     var res =
         await http.get(Uri.parse("${AppConfig.DELIVERY_OUT_TR}/$id"), headers: {"Authorization": "Bearer $token"});
-    print(res.statusCode);
-    print(res.body);
+    log(res.statusCode.toString(), name: "Status Code");
+    log(res.body, name: "Response Body");
     return SingleDeliveryOutTrxModel.fromJson(jsonDecode(res.body));
   }
 
   //Single existing model
-  static Future<http.Response> addTranscations(
-      {required String deliveryTypeId,
-      required CageDatum? cageNo,
-      required String measurementId,
-      required String weight}) async {
+  static Future<http.Response> addTranscations({
+    required String deliveryTypeId,
+    required CageDatum? cageNo,
+    required String measurementId,
+    required String weight,
+    required String categoryId,
+    String? productWeight,
+  }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
-    print("delivery id == $deliveryTypeId");
-
+    log("delivery id == $deliveryTypeId");
+    log("Token: $token");
     var withoutCageNoData = {
-      "weight": weight,
+      if (productWeight != null) "weight": productWeight,
       "delivery_id": deliveryTypeId,
       "measurement": measurementId,
-      if (cageNo != null) "case_id": cageNo.id.toString(),
+      if (cageNo != null) "case_id": cageNo.id?.toString(),
+      "category_id": categoryId,
+      if (productWeight != null) "product_weight": weight,
     };
+    log("withoutCageNoData: $withoutCageNoData");
     var res = await http.post(Uri.parse(AppConfig.DELIVERY_OUT_TR),
         headers: {"Authorization": "Bearer $token"}, body: withoutCageNoData);
 

@@ -34,10 +34,12 @@ class DeliveryInController {
   static Future<TranscaByDeliveryInIdModel> getSingleExistingDeliveryInTransactions({required String id}) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
+    log("Access Token: $token", name: "Access Token");
+    log("URI: ${AppConfig.TRANSCATION_BY_DELIVERYID}$id", name: "URI");
     var res = await http
         .get(Uri.parse("${AppConfig.TRANSCATION_BY_DELIVERYID}$id"), headers: {"Authorization": "Bearer $token"});
-    print(res.statusCode);
-    print("res.body ${res.body}");
+    log(res.statusCode.toString());
+    log("res.body ${res.body}");
     return TranscaByDeliveryInIdModel.fromJson(jsonDecode(res.body));
   }
 
@@ -68,23 +70,18 @@ class DeliveryInController {
     required String measurementId,
     required String weight,
     required String productCategoryId,
+    String? productWeight,
   }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
-    print("delivery id == $deliveryTypeId");
     var data = {
-      "weight": weight,
+      "weight": productWeight,
       "delivery_id": deliveryTypeId,
       "measurement": measurementId,
       if (cageNo != null) "case_id": cageNo.id.toString(),
       "category_id": productCategoryId,
+      if (productWeight != null) "product_weight": weight,
     };
-    // var withCageNoData = {
-    //   "weight": weight,
-    //   "delivery_id": deliveryTypeId,
-    //   "measurement": measurementId,
-    //   "case_id": cageNo?.id,
-    // };
     log("Response Data: $data", name: "Data");
     var res = await http.post(Uri.parse(AppConfig.DELIVERY_IN_TRANSCATION),
         headers: {"Authorization": "Bearer $token"}, body: data);

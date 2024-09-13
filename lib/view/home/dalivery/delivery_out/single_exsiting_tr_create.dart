@@ -2,9 +2,11 @@ import 'dart:core';
 import 'dart:developer';
 
 import 'package:crm/controller/cage_controller/cage_controller.dart';
+import 'package:crm/controller/delivery_controller%20/in_controller/product_category_controller.dart';
 import 'package:crm/controller/delivery_controller%20/out_controller/delivery_out_controller.dart';
 import 'package:crm/controller/user_controller/userController.dart';
 import 'package:crm/model/cage_model/cage_model.dart';
+import 'package:crm/model/delivery_model/in_model/product_category_model.dart';
 import 'package:crm/model/delivery_model/out_model/existing_delivery_out_model.dart';
 import 'package:crm/model/user_model/allUserModel.dart';
 import 'package:crm/utility/app_const.dart';
@@ -62,6 +64,21 @@ class _CreateSingleTrState extends State<CreateSingleTr> {
   }
 
   final weight = TextEditingController();
+  final productWeight = TextEditingController();
+  final List<ProductCategoryDatum> _productCategoryList = [];
+
+  bool isCategoryLoading = true;
+  void _getProductCategory() async {
+    var res = await DeliveryInProductCategoryController.getProductCategory();
+    for (var i in res!.data!) {
+      setState(() {
+        _productCategoryList.add(i);
+      });
+    }
+    setState(() {
+      isCategoryLoading = false;
+    });
+  }
 
   @override
   void initState() {
@@ -70,6 +87,7 @@ class _CreateSingleTrState extends State<CreateSingleTr> {
     dateTextController.text = AppConst.currentData(); //get current date
     //_getDeliveryTypeList();
     _getAllCageList();
+    _getProductCategory();
 
     print(
         " widget.existingDeliveryInDatum!.deliveryType.toString() == ${widget.existingDeliveryInDatum!.deliveryType.toString()}");
@@ -100,6 +118,66 @@ class _CreateSingleTrState extends State<CreateSingleTr> {
                   } else if (snapshot.hasData) {
                     return Column(
                       children: [
+                        Row(
+                          children: [
+                            const Expanded(
+                              child: Text(
+                                "Product Category",
+                                style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 15),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: isCategoryLoading
+                                  ? const Center(child: CircularProgressIndicator())
+                                  : DropdownButtonHideUnderline(
+                                      child: DropdownButton2<String>(
+                                        isExpanded: true,
+                                        hint: Text(
+                                          'Select Item',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Theme.of(context).hintColor,
+                                          ),
+                                        ),
+                                        items: _productCategoryList
+                                            .map((item) => DropdownMenuItem<String>(
+                                                  value: item.id.toString(),
+                                                  child: Text(
+                                                    item.name!,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList(),
+                                        value: selectedProductCategory,
+                                        onChanged: (String? value) {
+                                          setState(() {
+                                            selectedProductCategory = value;
+                                          });
+                                        },
+                                        buttonStyleData: ButtonStyleData(
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
+                                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                                          height: 60,
+                                          width: 140,
+                                        ),
+                                        menuItemStyleData: const MenuItemStyleData(
+                                          height: 40,
+                                        ),
+                                      ),
+                                    ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         widget.existingDeliveryInDatum!.measurement!.name == "Cage"
                             ? Row(
                                 children: [
@@ -160,6 +238,35 @@ class _CreateSingleTrState extends State<CreateSingleTr> {
                         const SizedBox(
                           height: 20,
                         ),
+                        if (selectedCageOn?.caseName == 'Free Weight') ...[
+                          Row(
+                            children: [
+                              const Expanded(
+                                child: Text(
+                                  "Cage Weight",
+                                  style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 15),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: TextFormField(
+                                  keyboardType: TextInputType.number,
+                                  controller: productWeight,
+                                  decoration: InputDecoration(
+                                    fillColor: Colors.grey.shade200,
+                                    filled: true,
+                                    border: const OutlineInputBorder(borderSide: BorderSide.none),
+                                    hintText: "0 KG",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                        ],
                         Row(
                           children: [
                             Expanded(
@@ -172,16 +279,18 @@ class _CreateSingleTrState extends State<CreateSingleTr> {
                               width: 20,
                             ),
                             Expanded(
-                                flex: 2,
-                                child: TextFormField(
-                                  keyboardType: TextInputType.number,
-                                  controller: weight,
-                                  decoration: InputDecoration(
-                                      fillColor: Colors.grey.shade200,
-                                      filled: true,
-                                      border: const OutlineInputBorder(borderSide: BorderSide.none),
-                                      hintText: "Weight"),
-                                ))
+                              flex: 2,
+                              child: TextFormField(
+                                keyboardType: TextInputType.number,
+                                controller: weight,
+                                decoration: InputDecoration(
+                                  fillColor: Colors.grey.shade200,
+                                  filled: true,
+                                  border: const OutlineInputBorder(borderSide: BorderSide.none),
+                                  hintText: "Weight",
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(
@@ -253,13 +362,21 @@ class _CreateSingleTrState extends State<CreateSingleTr> {
     } else {
       if (widget.existingDeliveryInDatum!.measurement!.name == "Cage" && selectedCageOn == null) {
         AppSnackbar.appSnackbar("Select Cage no.", Colors.red, context);
+      } else if (selectedProductCategory == null) {
+        AppSnackbar.appSnackbar("Select Product Category.", Colors.red, context);
+      } else if (widget.existingDeliveryInDatum?.measurement?.id == null) {
+        AppSnackbar.appSnackbar("Select Measurement.", Colors.red, context);
       } else {
+        log("weight: ${weight.text}, selectedCageOn: ${selectedCageOn?.caseName}, selectedProductCategory: $selectedProductCategory, measurement: ${widget.existingDeliveryInDatum?.measurement?.id?.toString()}, productWeight: ${productWeight.text}",
+            name: "DeliveryOut");
         var res = await DeliveryOutController.addTranscations(
-            weight: weight.text,
-            deliveryTypeId: widget.existingDeliveryId.toString(),
-            measurementId: widget.existingDeliveryInDatum!.measurement!.id.toString(),
-            cageNo: selectedCageOn);
-        log("Response: ${res.body}", name: "Create Delivery Out Transaction");
+          weight: weight.text,
+          deliveryTypeId: widget.existingDeliveryId.toString(),
+          measurementId: widget.existingDeliveryInDatum?.measurement?.id?.toString() ?? "",
+          cageNo: selectedCageOn,
+          categoryId: selectedProductCategory!,
+          productWeight: productWeight.text,
+        );
         if (res.statusCode == 200) {
           AppSnackbar.appSnackbar("Transaction created success.", Colors.green, context);
 

@@ -152,6 +152,11 @@ class _EditTranscationState extends State<EditTranscation> {
             const SizedBox(
               height: 20,
             ),
+            if (widget.singleTransaction.cage?.caseName == "Free Weight")
+              Text("Free Weight ${widget.singleTransaction.weight}"),
+            const SizedBox(
+              height: 20,
+            ),
             Row(
               children: [
                 Expanded(
@@ -164,16 +169,18 @@ class _EditTranscationState extends State<EditTranscation> {
                   width: 20,
                 ),
                 Expanded(
-                    flex: 2,
-                    child: TextFormField(
-                      controller: weight,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          border: const OutlineInputBorder(borderSide: BorderSide.none),
-                          hintText: "00 "),
-                    ))
+                  flex: 2,
+                  child: TextFormField(
+                    controller: weight,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      fillColor: Colors.grey.shade200,
+                      filled: true,
+                      border: const OutlineInputBorder(borderSide: BorderSide.none),
+                      hintText: "00 ",
+                    ),
+                  ),
+                ),
               ],
             ),
             const SizedBox(

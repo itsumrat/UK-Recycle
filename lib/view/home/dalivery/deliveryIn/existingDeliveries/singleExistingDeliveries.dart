@@ -73,7 +73,7 @@ class _SingleExistingDeliveriesState extends State<SingleExistingDeliveries> {
                     ),
                     Center(
                       child: Text(
-                        "${snapshot.data!.data!.weight?.toStringAsFixed(2) ?? "0.00"} ",
+                        "${snapshot.data!.data!.productWeight?.toStringAsFixed(2) ?? "0.00"} ",
                         style: const TextStyle(fontSize: 30, color: AppColor.black, fontWeight: FontWeight.w500),
                       ),
                     ),
@@ -92,10 +92,12 @@ class _SingleExistingDeliveriesState extends State<SingleExistingDeliveries> {
 
                     //// transactions
                     InkWell(
-                      onTap: () => Get.to(Transactions(
-                        singleDeliveryInModel: snapshot.data!,
-                        existingDeliveryInDatum: widget.existingDeliveryInDatum,
-                      )),
+                      onTap: () => Get.to(
+                        () => Transactions(
+                          singleDeliveryInModel: snapshot.data!,
+                          existingDeliveryInDatum: widget.existingDeliveryInDatum,
+                        ),
+                      ),
                       child: Container(
                         width: 200,
                         height: 250,

@@ -36,20 +36,25 @@ class SingleExistingDeliveryOutModel {
 class Data {
   final Delivery? delivery;
   final num? weight;
+  final num? productWeight;
+
 
   Data({
     this.delivery,
     this.weight,
+    this.productWeight,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         delivery: json["delivery"] == null ? null : Delivery.fromJson(json["delivery"]),
         weight: json["weight"],
+        productWeight: json["product_weight"],
       );
 
   Map<String, dynamic> toJson() => {
         "delivery": delivery?.toJson(),
         "weight": weight,
+        "product_weight": productWeight,
       };
 }
 

@@ -82,7 +82,7 @@ class _SingleExistingDeliveriesOutsState extends State<SingleExistingDeliveriesO
                       ),
                       Center(
                         child: Text(
-                          "${snapshot.data!.data!.weight ?? "0"} ",
+                          "${snapshot.data!.data!.productWeight ?? "0"} ",
                           style: const TextStyle(fontSize: 30, color: AppColor.black, fontWeight: FontWeight.w500),
                         ),
                       ),

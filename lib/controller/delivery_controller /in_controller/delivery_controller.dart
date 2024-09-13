@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:crm/appConfig.dart';
 import 'package:crm/model/mesumarment_model/mesumarmentModel.dart';
@@ -17,17 +18,25 @@ class DeliveryController {
   }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
-    var res = await http.post(Uri.parse(AppConfig.DELIVERY_ID), headers: {
-      "Authorization": "Bearer $token"
-    }, body: {
-      // "category_id" : productCategoryId,
-      "supplier_id": suplierId,
-      "delivery_type": deliveryTypeID,
-      "measurement_type": measurementTypeId,
-      "assigned_to": assignTo
-    });
-    print("res == body == ${res.statusCode}");
-    print("res == body == ${res.body}");
+    log("token == $token");
+    log("URI == ${AppConfig.DELIVERY_ID}");
+    log("deliveryTypeID == $deliveryTypeID");
+    log("assignTo == $assignTo");
+    log("suplierId == $suplierId");
+    log("measurementTypeId == $measurementTypeId");
+    var res = await http.post(
+      Uri.parse(AppConfig.DELIVERY_ID),
+      headers: {"Authorization": "Bearer $token"},
+      body: {
+        // "category_id" : productCategoryId,
+        "supplier_id": suplierId,
+        "delivery_type": deliveryTypeID,
+        "measurement_type": measurementTypeId,
+        "assigned_to": assignTo
+      },
+    );
+    log("res == body == ${res.statusCode}");
+    log("res == body == ${res.body}");
     return res;
   }
 

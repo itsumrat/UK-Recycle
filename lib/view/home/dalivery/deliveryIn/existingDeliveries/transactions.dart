@@ -109,6 +109,7 @@ class _TransactionsState extends State<Transactions> {
                           ? ListView.builder(
                               itemCount: _searchTranscationList.length,
                               itemBuilder: (_, index) {
+                                final transaction = _searchTranscationList[index];
                                 return InkWell(
                                   //onTap: ()=>Get.to(SingleExistingDeliveries()),
                                   child: Container(
@@ -131,7 +132,7 @@ class _TransactionsState extends State<Transactions> {
                                             decoration: BoxDecoration(
                                                 color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
                                             child: Text(
-                                              "${widget.singleDeliveryInModel!.data!.delivery!.categories!.name}",
+                                              transaction.category?.name ?? 'N\\A',
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.w400, color: AppColor.textColor, fontSize: 16),
                                             ),
@@ -184,6 +185,7 @@ class _TransactionsState extends State<Transactions> {
                               : ListView.builder(
                                   itemCount: _transcationList.length,
                                   itemBuilder: (_, index) {
+                                    final transaction = _transcationList[index];
                                     return InkWell(
                                       //onTap: ()=>Get.to(SingleExistingDeliveries()),
                                       child: Container(
@@ -207,7 +209,7 @@ class _TransactionsState extends State<Transactions> {
                                                     color: Colors.grey.shade200,
                                                     borderRadius: BorderRadius.circular(5)),
                                                 child: Text(
-                                                  "${widget.singleDeliveryInModel!.data!.delivery!.categories!.name}",
+                                                  transaction.category?.name ?? 'N\\A',
                                                   style: const TextStyle(
                                                       fontWeight: FontWeight.w400,
                                                       color: AppColor.textColor,

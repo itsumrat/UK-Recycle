@@ -5,6 +5,7 @@
 import 'dart:convert';
 
 import 'package:crm/model/cage_model/cage_model.dart';
+import 'package:crm/model/delivery_model/out_model/existing_delivery_out_model.dart';
 
 DeliveryOutTrListModel deliveryOutTrListModelFromJson(String str) => DeliveryOutTrListModel.fromJson(json.decode(str));
 
@@ -72,6 +73,7 @@ class Transaction {
   final Measurements? measurements;
   final User? user;
   final CageDatum? cage;
+  final Categories? category;
 
   Transaction({
     this.id,
@@ -88,6 +90,7 @@ class Transaction {
     this.user,
     this.productWeight,
     this.cage,
+    this.category,
   });
 
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
@@ -105,6 +108,7 @@ class Transaction {
         user: json["user"] == null ? null : User.fromJson(json["user"]),
         productWeight: json["product_weight"]?.toDouble(),
         cage: json["cage"] == null ? null : CageDatum.fromJson(json["cage"]),
+        category: json["category"] == null ? null : Categories.fromJson(json["category"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -122,6 +126,7 @@ class Transaction {
         "user": user?.toJson(),
         "product_weight": productWeight,
         "cage": cage?.toJson(),
+        "category": category?.toJson(),
       };
 }
 

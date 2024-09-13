@@ -35,20 +35,24 @@ class SingleDeliveryInModel {
 class Data {
   final Delivery? delivery;
   final double? weight;
+  final double? productWeight;
 
   Data({
     this.delivery,
     this.weight,
+    this.productWeight,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         delivery: json["delivery"] == null ? null : Delivery.fromJson(json["delivery"]),
         weight: double.tryParse(json["weight"].toString()),
+        productWeight: double.tryParse(json["product_weight"].toString()),
       );
 
   Map<String, dynamic> toJson() => {
         "delivery": delivery?.toJson(),
         "weight": weight,
+        "product_weight": productWeight,
       };
 }
 
