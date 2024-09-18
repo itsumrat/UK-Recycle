@@ -71,7 +71,8 @@ class _EditDeliveryOutTranscationState extends State<EditDeliveryOutTranscation>
     userName.text = widget.singleTransaction?.user?.name?.toString() ?? '';
     userId.text = widget.singleTransaction?.user?.userId?.toString() ?? '';
     date.text = AppConst.formetData(widget.singleTransaction!.date);
-    weight.text = widget.singleTransaction!.productWeight?.toString() ?? '';
+    weight.text =
+        ((widget.singleTransaction!.productWeight ?? 0) + (widget.singleTransaction!.weight ?? 0)).toString() ?? '';
     cageWeight.text = widget.singleTransaction!.weight?.toString() ?? '';
   }
 
@@ -233,7 +234,11 @@ class _EditDeliveryOutTranscationState extends State<EditDeliveryOutTranscation>
   editTransition() async {
     setState(() => isEditingLoading = true);
     var res = await DeliveryOutController.editTranscations(
-        case_no: selectedCageOn, weight: weight.text, id: widget.singleTransaction!.id.toString());
+      case_no: selectedCageOn,
+      weight: weight.text,
+      cageWeight: cageWeight.text,
+      id: widget.singleTransaction!.id.toString(),
+    );
     if (res.statusCode == 200) {
       Get.to(DeliveryOutsTransactionsList(
         existingDeliveryOutDatum: widget.existingDeliveryOutDatum,

@@ -50,6 +50,7 @@ class _EditTranscationState extends State<EditTranscation> {
   final productCategory = TextEditingController();
   final cageNo = TextEditingController();
   final weight = TextEditingController();
+  final cageWeight = TextEditingController();
 
   final List<CageDatum> _allCageList = [];
   //get product category
@@ -70,10 +71,12 @@ class _EditTranscationState extends State<EditTranscation> {
     // _getDeliveryTypeFuture();
     // _getProductCategoryFuture();
     _getAllCageList();
-    userName.text = widget.singleTransaction.user!.name!;
-    userId.text = widget.singleTransaction.user!.uid!;
+    userName.text = widget.singleTransaction.user?.name?.toString() ?? '';
+    userId.text = widget.singleTransaction.user?.id?.toString() ?? '';
     date.text = AppConst.formetData(widget.singleTransaction.date);
-    weight.text = widget.singleTransaction.productWeight?.toStringAsFixed(2) ?? '';
+    weight.text =
+        ((widget.singleTransaction.productWeight ?? 0) + (widget.singleTransaction.weight ?? 0)).toString() ?? '';
+    cageWeight.text = widget.singleTransaction.weight?.toString() ?? '';
 
     print("existingDeliveryInDatum == ${widget.existingDeliveryInDatum}");
   }
@@ -152,11 +155,35 @@ class _EditTranscationState extends State<EditTranscation> {
             const SizedBox(
               height: 20,
             ),
-            if (widget.singleTransaction.cage?.caseName == "Free Weight")
-              Text("Free Weight ${widget.singleTransaction.weight}"),
-            const SizedBox(
-              height: 20,
-            ),
+            if (selectedCageOn?.caseName == 'Free Weight') ...[
+              Row(
+                children: [
+                  const Expanded(
+                    child: Text(
+                      "Cage Weight",
+                      style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black, fontSize: 15),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: cageWeight,
+                      decoration: InputDecoration(
+                        fillColor: Colors.grey.shade200,
+                        filled: true,
+                        border: const OutlineInputBorder(borderSide: BorderSide.none),
+                        hintText: "0 KG",
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+            ],
             Row(
               children: [
                 Expanded(
@@ -222,7 +249,11 @@ class _EditTranscationState extends State<EditTranscation> {
     }
     setState(() => isEditingLoading = true);
     var res = await DeliveryInController.editTranscations(
-        case_no: selectedCageOn, weight: weight.text, id: widget.singleTransaction.id.toString());
+      case_no: selectedCageOn,
+      weight: weight.text,
+      id: widget.singleTransaction.id.toString(),
+      cageWeight: cageWeight.text,
+    );
     if (res.statusCode == 200) {
       Get.to(Transactions(
         existingDeliveryInDatum: widget.existingDeliveryInDatum,

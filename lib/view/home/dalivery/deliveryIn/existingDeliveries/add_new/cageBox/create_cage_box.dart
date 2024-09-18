@@ -85,7 +85,7 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
   }
 
   final weight = TextEditingController();
-  final productWeight = TextEditingController();
+  final cageWeight = TextEditingController();
 
   @override
   void initState() {
@@ -551,7 +551,7 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
                                 flex: 2,
                                 child: TextFormField(
                                   keyboardType: TextInputType.number,
-                                  controller: productWeight,
+                                  controller: cageWeight,
                                   decoration: InputDecoration(
                                     fillColor: Colors.grey.shade200,
                                     filled: true,
@@ -674,7 +674,7 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
       measurementId: widget.existingDeliveryInDatum!.measurement!.id.toString(),
       cageNo: selectedCageOn,
       productCategoryId: selectedProductCategory!,
-      productWeight: productWeight.text,
+      cageWeight: cageWeight.text,
     );
     if (res.statusCode == 200) {
       AppSnackbar.appSnackbar("Transaction created success.", Colors.green, context);

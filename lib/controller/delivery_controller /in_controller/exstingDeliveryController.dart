@@ -44,22 +44,27 @@ class DeliveryInController {
   }
 
   //Single existing model
-  static Future<http.Response> editTranscations(
-      {required String weight, required CageDatum? case_no, required String id}) async {
+  static Future<http.Response> editTranscations({
+    required String weight,
+    required CageDatum? case_no,
+    required String id,
+    required String cageWeight,
+  }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     // var withoutCaseNo = {"weight": weight};
     var withCaseNo = {
-      "weight": weight,
+      "product_weight": weight,
       if (case_no != null) "case_no": case_no.id!.toString(),
+      if (cageWeight.isNotEmpty) "weight": cageWeight,
     };
     var res = await http.put(
       Uri.parse("${AppConfig.DELIVERY_IN_TRANSCATION}/$id"),
       headers: {"Authorization": "Bearer $token"},
       body: withCaseNo,
     );
-    print(res.statusCode);
-    print(res.body);
+    log(res.statusCode.toString());
+    log(res.body);
     return res;
   }
 
@@ -70,17 +75,17 @@ class DeliveryInController {
     required String measurementId,
     required String weight,
     required String productCategoryId,
-    String? productWeight,
+    String? cageWeight,
   }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     var data = {
-      "weight": productWeight,
+      if (cageWeight != null) "weight": cageWeight,
       "delivery_id": deliveryTypeId,
       "measurement": measurementId,
       if (cageNo != null) "case_id": cageNo.id.toString(),
       "category_id": productCategoryId,
-      if (productWeight != null) "product_weight": weight,
+      "product_weight": weight,
     };
     log("Response Data: $data", name: "Data");
     var res = await http.post(Uri.parse(AppConfig.DELIVERY_IN_TRANSCATION),

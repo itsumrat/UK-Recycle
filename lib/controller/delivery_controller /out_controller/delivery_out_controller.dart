@@ -111,13 +111,18 @@ class DeliveryOutController {
   }
 
   //edit
-  static Future<http.Response> editTranscations(
-      {required String weight, required CageDatum? case_no, required String id}) async {
+  static Future<http.Response> editTranscations({
+    required String weight,
+    required CageDatum? case_no,
+    required String id,
+    required String cageWeight,
+  }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     var withCaseNo = {
-      "weight": weight,
+      "product_weight": weight,
       if (case_no != null) "case_no": case_no.id.toString(),
+      if (cageWeight.isNotEmpty) "weight": cageWeight,
     };
 
     var res = await http.put(Uri.parse("${AppConfig.DELIVERY_OUT_TR}/$id"),
