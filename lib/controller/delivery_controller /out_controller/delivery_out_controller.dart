@@ -125,7 +125,7 @@ class DeliveryOutController {
     var token = pref.getString("token");
     var withCaseNo = {
       "product_weight": double.tryParse(weight) ?? 0,
-      if (case_no != null) "case_no": case_no.id.toString(),
+      if (case_no != null) "case_id": case_no.id.toString(),
       "weight": double.tryParse(cageWeight) ?? 0,
     };
 

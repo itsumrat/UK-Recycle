@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:crm/appConfig.dart';
 import 'package:crm/model/table_molde/table_list_model.dart';

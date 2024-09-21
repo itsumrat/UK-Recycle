@@ -71,10 +71,11 @@ class _EditDeliveryOutTranscationState extends State<EditDeliveryOutTranscation>
     userName.text = widget.singleTransaction?.user?.name?.toString() ?? '';
     userId.text = widget.singleTransaction?.user?.userId?.toString() ?? '';
     date.text = AppConst.formetData(widget.singleTransaction!.date);
-    weight.text =
-        ((widget.singleTransaction!.productWeight ?? 0) + (widget.singleTransaction!.weight ?? 0)).toStringAsFixed(2);
+    weight.text = ((widget.singleTransaction?.productWeight ?? 0) +
+            (widget.singleTransaction?.weight ?? widget.existingCage?.weight ?? 0))
+        .toStringAsFixed(2);
     cageWeight.text =
-        (widget.singleTransaction?.cage?.weight ?? widget.singleTransaction!.weight)?.toStringAsFixed(2) ?? '';
+        widget.existingCage?.weight?.toStringAsFixed(2) ?? widget.singleTransaction?.weight?.toStringAsFixed(2) ?? '';
   }
 
   @override
@@ -150,7 +151,7 @@ class _EditDeliveryOutTranscationState extends State<EditDeliveryOutTranscation>
             const SizedBox(
               height: 20,
             ),
-            if (selectedCageOn?.caseName == 'Free Weight') ...[
+            if (widget.singleDelivery?.data!.delivery!.measurement!.name == "Cage") ...[
               Row(
                 children: [
                   const Expanded(
@@ -167,6 +168,7 @@ class _EditDeliveryOutTranscationState extends State<EditDeliveryOutTranscation>
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: cageWeight,
+                      readOnly: selectedCageOn?.caseName != 'Free Weight',
                       decoration: InputDecoration(
                         fillColor: Colors.grey.shade200,
                         filled: true,

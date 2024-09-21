@@ -55,7 +55,7 @@ class DeliveryInController {
     // var withoutCaseNo = {"weight": weight};
     var withCaseNo = {
       "product_weight": weight,
-      if (case_no != null) "case_no": case_no.id!.toString(),
+      if (case_no != null) "case_id": case_no.id!.toString(),
       "weight": double.tryParse(cageWeight) ?? 0,
     };
     log("Body: $withCaseNo");
