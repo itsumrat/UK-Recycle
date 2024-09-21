@@ -89,23 +89,27 @@ class DeliveryOutController {
     required String measurementId,
     required String weight,
     required String categoryId,
-    String? productWeight,
+    required String productWeight,
   }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     log("delivery id == $deliveryTypeId");
     log("Token: $token");
     var withoutCageNoData = {
-      if (productWeight != null) "weight": productWeight,
+      "weight": double.tryParse(productWeight) ?? 0,
       "delivery_id": deliveryTypeId,
       "measurement": measurementId,
       if (cageNo != null) "case_id": cageNo.id?.toString(),
       "category_id": categoryId,
-      if (productWeight != null) "product_weight": weight,
+      "product_weight": double.tryParse(weight) ?? 0,
     };
     log("withoutCageNoData: $withoutCageNoData");
     var res = await http.post(Uri.parse(AppConfig.DELIVERY_OUT_TR),
-        headers: {"Authorization": "Bearer $token"}, body: withoutCageNoData);
+        headers: {
+          "Authorization": "Bearer $token",
+          "Content-Type": "application/json",
+        },
+        body: jsonEncode(withoutCageNoData));
 
     return res;
   }
@@ -120,13 +124,19 @@ class DeliveryOutController {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     var withCaseNo = {
-      "product_weight": weight,
+      "product_weight": double.tryParse(weight) ?? 0,
       if (case_no != null) "case_no": case_no.id.toString(),
-      if (cageWeight.isNotEmpty) "weight": cageWeight,
+      "weight": double.tryParse(cageWeight) ?? 0,
     };
 
+    log("Body: $withCaseNo");
+
     var res = await http.put(Uri.parse("${AppConfig.DELIVERY_OUT_TR}/$id"),
-        headers: {"Authorization": "Bearer $token"}, body: withCaseNo);
+        headers: {
+          "Authorization": "Bearer $token",
+          "Content-Type": "application/json",
+        },
+        body: jsonEncode(withCaseNo));
 
     return res;
   }

@@ -56,12 +56,16 @@ class DeliveryInController {
     var withCaseNo = {
       "product_weight": weight,
       if (case_no != null) "case_no": case_no.id!.toString(),
-      if (cageWeight.isNotEmpty) "weight": cageWeight,
+      "weight": double.tryParse(cageWeight) ?? 0,
     };
+    log("Body: $withCaseNo");
     var res = await http.put(
       Uri.parse("${AppConfig.DELIVERY_IN_TRANSCATION}/$id"),
-      headers: {"Authorization": "Bearer $token"},
-      body: withCaseNo,
+      headers: {
+        "Authorization": "Bearer $token",
+        "Content-Type": "application/json",
+      },
+      body: jsonEncode(withCaseNo),
     );
     log(res.statusCode.toString());
     log(res.body);
@@ -75,12 +79,12 @@ class DeliveryInController {
     required String measurementId,
     required String weight,
     required String productCategoryId,
-    String? cageWeight,
+    required String cageWeight,
   }) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     var data = {
-      if (cageWeight != null) "weight": cageWeight,
+      "weight": double.tryParse(cageWeight) ?? 0,
       "delivery_id": deliveryTypeId,
       "measurement": measurementId,
       if (cageNo != null) "case_id": cageNo.id.toString(),
@@ -89,7 +93,11 @@ class DeliveryInController {
     };
     log("Response Data: $data", name: "Data");
     var res = await http.post(Uri.parse(AppConfig.DELIVERY_IN_TRANSCATION),
-        headers: {"Authorization": "Bearer $token"}, body: data);
+        headers: {
+          "Authorization": "Bearer $token",
+          "Content-Type": "application/json",
+        },
+        body: jsonEncode(data));
     log(res.statusCode.toString(), name: "statuscode");
     log(res.body.substring(0, 500).toString(), name: "body");
     return res;
