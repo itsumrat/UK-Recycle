@@ -160,7 +160,9 @@ class Production {
 extension Helper on Production {
   // "${data.productionId}/${data.createdAt != null ? DateFormat("dd-MM-yyyy").format(data.createdAt!) : "N\\A"}/${data.assignedTo?.name}/${data.tables!.name}"
   String get productionIdString {
-    return "$productionId/${createdAt != null ? AppConst.formetData(createdAt) : "N\\A"}/${assignedTo?.name}/${tableData == null ? table : tableData!.name}";
+    String pid = productionId!.split('PR').last;
+    pid = "PR${pid.padLeft(6, '0')}";
+    return "$pid/${createdAt != null ? AppConst.formetData(createdAt) : "N\\A"}/${assignedTo?.name}/${tableData == null ? table : tableData!.name}";
   }
 }
 

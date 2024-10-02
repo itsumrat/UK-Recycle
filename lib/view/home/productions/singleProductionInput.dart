@@ -266,7 +266,7 @@ class _SingleProductionInputState extends State<SingleProductionInput> {
         AppSnackbar.appSnackbar("Production added success.", Colors.green, context);
         var data = jsonDecode(res.body)["data"];
         log("data: $data", name: "SingleProductionInput");
-        String grade = data['grade'];
+        String grade = data['name'] ?? '';
         String weight = data['weight'];
         String createdAt = data['created_at'];
         if (shouldNavigate) {

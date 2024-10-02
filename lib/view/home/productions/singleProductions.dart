@@ -63,11 +63,13 @@ class _SingleProductionsState extends State<SingleProductions> {
                     // const SizedBox(
                     //   height: 20,
                     // ),
-                    Center(
-                      child: Text(
-                        "Production:\n${snapshot.data!.data!.production!.productionIdString}",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    FittedBox(
+                      child: Center(
+                        child: Text(
+                          "Production:\n${snapshot.data!.data!.production!.productionIdString}",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                     const SizedBox(
