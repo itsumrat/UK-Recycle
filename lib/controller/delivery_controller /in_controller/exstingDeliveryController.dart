@@ -58,7 +58,7 @@ class DeliveryInController {
       if (case_no != null) "case_id": case_no.id!.toString(),
       "weight": double.tryParse(cageWeight) ?? 0,
     };
-    log("Body: $withCaseNo");
+    log("Body: $withCaseNo", name: "Deliver In edit");
     var res = await http.put(
       Uri.parse("${AppConfig.DELIVERY_IN_TRANSCATION}/$id"),
       headers: {

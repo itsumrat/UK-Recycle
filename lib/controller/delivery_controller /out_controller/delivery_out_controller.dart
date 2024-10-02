@@ -129,7 +129,7 @@ class DeliveryOutController {
       "weight": double.tryParse(cageWeight) ?? 0,
     };
 
-    log("Body: $withCaseNo");
+    log("Body: $withCaseNo", name: "Deliver In edit");
 
     var res = await http.put(Uri.parse("${AppConfig.DELIVERY_OUT_TR}/$id"),
         headers: {

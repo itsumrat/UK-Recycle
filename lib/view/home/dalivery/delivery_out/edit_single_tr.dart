@@ -71,11 +71,9 @@ class _EditDeliveryOutTranscationState extends State<EditDeliveryOutTranscation>
     userName.text = widget.singleTransaction?.user?.name?.toString() ?? '';
     userId.text = widget.singleTransaction?.user?.userId?.toString() ?? '';
     date.text = AppConst.formetData(widget.singleTransaction!.date);
-    weight.text = ((widget.singleTransaction?.productWeight ?? 0) +
-            (widget.singleTransaction?.weight ?? widget.existingCage?.weight ?? 0))
-        .toStringAsFixed(2);
-    cageWeight.text =
-        widget.existingCage?.weight?.toStringAsFixed(2) ?? widget.singleTransaction?.weight?.toStringAsFixed(2) ?? '';
+    weight.text =
+        ((widget.singleTransaction?.productWeight ?? 0) + (widget.singleTransaction?.weight ?? 0)).toStringAsFixed(2);
+    cageWeight.text = (widget.singleTransaction?.weight ?? 0).toStringAsFixed(2);
   }
 
   @override

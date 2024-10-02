@@ -515,6 +515,9 @@ class _CreateNewCageBoxState extends State<CreateNewCageBox> {
                                         onChanged: (CageDatum? value) {
                                           setState(() {
                                             selectedCageOn = value;
+                                            if (selectedCageOn?.caseName != 'Free Weight') {
+                                              cageWeight.text = selectedCageOn?.weight?.toString() ?? '';
+                                            }
                                           });
                                         },
                                         buttonStyleData: ButtonStyleData(

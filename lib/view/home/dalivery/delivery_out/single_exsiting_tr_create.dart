@@ -217,6 +217,9 @@ class _CreateSingleTrState extends State<CreateSingleTr> {
                                         onChanged: (CageDatum? value) {
                                           setState(() {
                                             selectedCageOn = value;
+                                            if (selectedCageOn?.caseName != 'Free Weight') {
+                                              productWeight.text = selectedCageOn?.weight?.toString() ?? '';
+                                            }
                                           });
                                         },
                                         buttonStyleData: ButtonStyleData(

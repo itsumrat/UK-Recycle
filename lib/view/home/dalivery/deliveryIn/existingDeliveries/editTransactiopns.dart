@@ -77,8 +77,7 @@ class _EditTranscationState extends State<EditTranscation> {
     weight.text = ((widget.singleTransaction.productWeight ?? 0) +
             (widget.singleTransaction.weight ?? widget.existingCage?.weight ?? 0))
         .toStringAsFixed(2);
-    cageWeight.text =
-        widget.singleTransaction.weight?.toStringAsFixed(2) ?? widget.existingCage?.weight?.toStringAsFixed(2) ?? '';
+    cageWeight.text = (widget.singleTransaction.weight ?? 0).toStringAsFixed(2);
   }
 
   @override
