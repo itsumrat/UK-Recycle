@@ -671,9 +671,15 @@ class _AddNewDeliveryState extends State<AddNewDelivery> {
         assignTo: role == AppConst.staffRole ? userId.text : selectedAssignTo!);
     if (res.statusCode == 200) {
       AppSnackbar.appSnackbar("New delivery in created success.", Colors.green, context);
-      Get.to(ShowCageBox(
-        deliveryId: jsonDecode(res.body)["data"]["id"].toString(),
-      ));
+      Get.to(() => ShowCageBox(
+            deliveryId: jsonDecode(res.body)["data"]["id"].toString(),
+          ));
+      selectedCustomerId = null;
+      selectedDeliveryType = null;
+      selectedMeasurementId = null;
+      selectedSupplierId = null;
+      // selectedProductCategory = null;
+      selectedAssignTo = null;
     } else {
       AppSnackbar.appSnackbar("Something went wrong.", Colors.red, context);
     }
@@ -691,9 +697,18 @@ class _AddNewDeliveryState extends State<AddNewDelivery> {
         assign_id: role == AppConst.staffRole ? userId.text : selectedAssignTo!);
     if (res.statusCode == 200) {
       AppSnackbar.appSnackbar("New delivery Out created success.", Colors.green, context);
-      Get.to(ShowNewlyCreateDeliveryOut(
-        deliveryId: jsonDecode(res.body)["data"]["id"].toString(),
-      ));
+
+      Get.to(
+        () => ShowNewlyCreateDeliveryOut(
+          deliveryId: jsonDecode(res.body)["data"]["id"].toString(),
+        ),
+      );
+      selectedCustomerId = null;
+      selectedDeliveryType = null;
+      selectedMeasurementId = null;
+      selectedSupplierId = null;
+      // selectedProductCategory = null;
+      selectedAssignTo = null;
     } else {
       AppSnackbar.appSnackbar("Something went wrong.", Colors.red, context);
     }

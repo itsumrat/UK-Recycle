@@ -2,7 +2,6 @@ import 'package:crm/controller/delivery_controller%20/out_controller/delivery_ou
 import 'package:crm/model/delivery_model/out_model/SingleExistingDeliveryOutModel.dart';
 import 'package:crm/model/delivery_model/out_model/existing_delivery_out_model.dart';
 import 'package:crm/utility/app_const.dart';
-import 'package:crm/view/home/dalivery/deliveryIn/createNewDelivery.dart';
 import 'package:crm/view/home/dalivery/delivery_out/deliveryOut.dart';
 import 'package:crm/view/home/dalivery/delivery_out/single_existing_delivery.dart';
 import 'package:crm/view_controller/appWidgets.dart';
@@ -289,9 +288,11 @@ class _ShowNewlyCreateDeliveryOutState extends State<ShowNewlyCreateDeliveryOut>
                       height: 70,
                     ),
                     InkWell(
-                      onTap: () => Get.to(const AddNewDelivery(
-                        isDeliveryOut: true,
-                      )),
+                      onTap: () => Get.back(
+                          // const AddNewDelivery(
+                          //   isDeliveryOut: true,
+                          // ),
+                          ),
                       child: Container(
                         width: 200,
                         height: 60,

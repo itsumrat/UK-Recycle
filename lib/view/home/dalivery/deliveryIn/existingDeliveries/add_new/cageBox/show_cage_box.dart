@@ -271,6 +271,28 @@ class _ShowCageBoxState extends State<ShowCageBox> {
                     //     ),
                     //   ),
                     // ),
+                    InkWell(
+                      onTap: () => Get.back(
+                          // const AddNewDelivery(
+                          //   isDeliveryOut: true,
+                          // ),
+                          ),
+                      child: Container(
+                        width: 200,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            gradient: AppWidgets.buildLinearGradient(), borderRadius: BorderRadius.circular(10)),
+                        child: const Center(
+                          child: Text(
+                            "Add More",
+                            style: TextStyle(fontWeight: FontWeight.w400, color: Colors.white, fontSize: 16),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
