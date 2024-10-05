@@ -80,7 +80,7 @@ class _ShowProductionsInputsState extends State<ShowProductionsInputs> {
                             AppSideBySIdeText(
                                 leftText: "Date: ",
                                 rightText:
-                                    DateFormat('dd/MM/yyyy').format(DateFormat('dd/MM/yyyy').parse(widget.date))),
+                                    DateFormat('dd/MM/yyyy').format(DateFormat('yyyy-mm-dd').parse(widget.date))),
                             const SizedBox(
                               height: 20,
                             ),

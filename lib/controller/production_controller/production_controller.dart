@@ -16,6 +16,7 @@ class ProductionController {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var token = pref.getString("token");
     var res = await http.get(Uri.parse(AppConfig.PRODUCTION_LIST), headers: {"Authorization": "Bearer $token"});
+    log("Body: ${res.statusCode}", name: "ProductionController");
     return AllProductionModel.fromJson(jsonDecode(res.body));
   }
 
