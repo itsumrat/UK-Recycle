@@ -43,7 +43,7 @@ class _SingleExistingDeliveriesState extends State<SingleExistingDeliveries> {
     return AppWidget(
       appBarOnBack: () => Get.to(const ExistingDeliveries()),
       appBarTitle:
-          "${widget.existingDeliveryInDatum!.deliveryInId}/${inputFormat.format(widget.existingDeliveryInDatum!.date!)}/${widget.existingDeliveryInDatum!.supplier!.name}-${widget.existingDeliveryInDatum!.measurement!.name}",
+          "${widget.existingDeliveryInDatum!.deliveryInId}/${inputFormat.format(widget.existingDeliveryInDatum!.date!)}/${widget.existingDeliveryInDatum!.supplier!.name}/${widget.existingDeliveryInDatum!.measurement!.name}",
       textSize: 15,
       body: FutureBuilder<SingleDeliveryInModel>(
           future: _singleDelivery,

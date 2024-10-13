@@ -50,7 +50,7 @@ class _SingleExistingDeliveriesOutsState extends State<SingleExistingDeliveriesO
     return AppWidget(
       appBarOnBack: () => Get.to(const ExistingDeliveriesOuts()),
       appBarTitle:
-          "${widget.existingDeliveryOutDatum?.deliveryOutId}/${inputFormat.format(widget.existingDeliveryOutDatum?.date ?? DateTime.now())}/${widget.existingDeliveryOutDatum?.measurement?.name}",
+          "${widget.existingDeliveryOutDatum?.deliveryOutId}/${inputFormat.format(widget.existingDeliveryOutDatum?.date ?? DateTime.now())}/${widget.existingDeliveryOutDatum?.customer?.name}/${widget.existingDeliveryOutDatum?.measurement?.name}",
       textSize: 15,
       body: RefreshIndicator(
         onRefresh: _refresh,

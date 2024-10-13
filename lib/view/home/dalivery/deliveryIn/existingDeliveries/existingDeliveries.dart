@@ -138,7 +138,7 @@ class _ExistingDeliveriesState extends State<ExistingDeliveries> {
                                       : const BorderSide(width: 0, color: AppColor.white),
                                 )),
                                 child: Text(
-                                  "${data.deliveryInId}/${inputFormat.format(data.date!)}/${data.supplier!.name}-${data.measurement!.name}",
+                                  "${data.deliveryInId}/${inputFormat.format(data.date!)}/${data.supplier!.name}/${data.measurement!.name}",
                                   style:
                                       const TextStyle(fontWeight: FontWeight.w500, color: Colors.black54, fontSize: 16),
                                 ),
@@ -149,10 +149,6 @@ class _ExistingDeliveriesState extends State<ExistingDeliveries> {
                           itemCount: _existingDeliveryInList.length,
                           itemBuilder: (_, index) {
                             var data = _existingDeliveryInList[index];
-                            String id =
-                                int.tryParse(data.deliveryInId?.split('-').last ?? '')?.toString().padLeft(6, '0') ??
-                                    '';
-
                             return InkWell(
                               onTap: () => Get.to(
                                 SingleExistingDeliveries(
@@ -174,7 +170,7 @@ class _ExistingDeliveriesState extends State<ExistingDeliveries> {
                                       : const BorderSide(width: 0, color: AppColor.white),
                                 )),
                                 child: Text(
-                                  "DIN-$id/${inputFormat.format(data.date!)}/${data.supplier?.name}/${data.measurement!.name}",
+                                  "${data.deliveryInId}/${inputFormat.format(data.date!)}/${data.supplier?.name}/${data.measurement!.name}",
                                   style:
                                       const TextStyle(fontWeight: FontWeight.w500, color: Colors.black54, fontSize: 16),
                                 ),
