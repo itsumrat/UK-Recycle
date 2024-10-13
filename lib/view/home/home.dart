@@ -1,5 +1,7 @@
 import 'package:crm/utility/app_const.dart';
 import 'package:crm/view/appBottomNavigationBar.dart';
+import 'package:crm/view/home/attendance/clockIn.dart';
+import 'package:crm/view/home/attendance/clockOut.dart';
 import 'package:crm/view/home/product_setup/product_setup.dart';
 import 'package:crm/view_controller/appWidgets.dart';
 import 'package:crm/widgets/app_boxes.dart';
@@ -50,18 +52,93 @@ class _HomeState extends State<Home> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 50),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(
+                height: 20,
+              ),
               Text(
                 "$role Dashboard",
                 style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w400, color: Colors.black),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(
                 height: 20,
               ),
               role == AppConst.attendantRole
-                  ? const AttendanceForStaf()
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: InkWell(
+                            onTap: () => Get.to(const Clicking()),
+                            child: Container(
+                              width: 200,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  gradient: AppWidgets.buildLinearGradient(), borderRadius: BorderRadius.circular(10)),
+                              child: const Center(
+                                child: Text(
+                                  "Clock In",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        InkWell(
+                          onTap: () => Get.to(const ClockOut()),
+                          child: Container(
+                            width: 200,
+                            height: 60,
+                            decoration: BoxDecoration(
+                                gradient: AppWidgets.buildLinearGradient(), borderRadius: BorderRadius.circular(10)),
+                            child: const Center(
+                              child: Text(
+                                "Clock Out",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        InkWell(
+                          onTap: () => Get.to(const AttendanceList()),
+                          child: Container(
+                            width: 200,
+                            height: 60,
+                            decoration: BoxDecoration(
+                                gradient: AppWidgets.buildLinearGradient(), borderRadius: BorderRadius.circular(10)),
+                            child: const Center(
+                              child: Text(
+                                "Attendance",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    )
                   : Column(
                       children: [
                         Column(
