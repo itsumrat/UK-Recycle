@@ -87,6 +87,7 @@ class ProductionController {
     var token = pref.getString("token");
     var res = await http
         .get(Uri.parse("${AppConfig.TRANSACTION_BY_PRODUCTION_ID}$id"), headers: {"Authorization": "Bearer $token"});
+    log("Body: ${res.body}", name: "ProductionController");
     return TransactionByProductionModel.fromJson(jsonDecode(res.body));
   }
 

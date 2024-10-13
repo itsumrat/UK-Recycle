@@ -140,13 +140,15 @@ class _EditProductionsTranslationState extends State<EditProductionsTranslation>
                                     ),
                                     SizedBox(
                                         child: InkWell(
-                                      onTap: () => Get.to(SingleProductionInput(
-                                        transactionID: data.id.toString(),
-                                        production: widget.productionModel,
-                                        existingWeight: data.weight.toString(),
-                                        existingGrade: data.grades!.name,
-                                        existingGradeId: data.grades!.id.toString(),
-                                      )),
+                                      onTap: () => Get.to(
+                                        () => SingleProductionInput(
+                                          transactionID: data.id.toString(),
+                                          production: widget.productionModel,
+                                          existingWeight: data.weight.toString(),
+                                          existingGrade: data.grades!.name,
+                                          existingGradeId: data.grades!.id.toString(),
+                                        ),
+                                      ),
                                       child: Container(
                                         padding: const EdgeInsets.only(left: 13, right: 13, top: 5, bottom: 5),
                                         decoration: BoxDecoration(
@@ -174,7 +176,7 @@ class _EditProductionsTranslationState extends State<EditProductionsTranslation>
                                         SizedBox(
                                           width: MediaQuery.of(context).size.width * .35,
                                           child: Text(
-                                            widget.productionModel!.productionIdString,
+                                            "${widget.productionModel!.productionId}/${data.id.toString()}",
                                             style: const TextStyle(
                                               fontWeight: FontWeight.w600,
                                               fontSize: 15,
