@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:crm/controller/attendance_controller/attendance_controller.dart';
 import 'package:crm/controller/user_controller/userController.dart';
 import 'package:crm/model/user_model/allUserModel.dart';
@@ -47,7 +49,6 @@ class _ClickingState extends State<Clicking> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getAllUser();
     date.text = DateFormat('yyyy-MM-dd').format(dateNow);
@@ -218,6 +219,7 @@ class _ClickingState extends State<Clicking> {
                   ),
                   InkWell(
                     onTap: () async {
+                      log("selectedPassKey == $selectedPassKey");
                       if (selectedPassKey == passKey.text) {
                         setState(() => isClockInOut = true);
                         var res = await AttendnaceController.clockIn(
@@ -278,8 +280,9 @@ class _ClickingState extends State<Clicking> {
         //time.text  = formatTimeOfDay(picked);
         time.text = "${picked.hour}:${picked.minute}";
       });
+      return picked.format(context);
     }
-    return picked!.format(context);
+    return selectedTime.format(context);
   }
 
   //select date

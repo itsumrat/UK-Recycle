@@ -10,7 +10,6 @@ import 'package:crm/view_controller/loader.dart';
 import 'package:crm/widgets/app_title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class ShowProductionsInputs extends StatefulWidget {
   final String weight;
@@ -77,10 +76,7 @@ class _ShowProductionsInputsState extends State<ShowProductionsInputs> {
                             const SizedBox(
                               height: 20,
                             ),
-                            AppSideBySIdeText(
-                                leftText: "Date: ",
-                                rightText:
-                                    DateFormat('dd/MM/yyyy').format(DateFormat('yyyy-mm-dd').parse(widget.date))),
+                            AppSideBySIdeText(leftText: "Date: ", rightText: widget.date),
                             const SizedBox(
                               height: 20,
                             ),

@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../../view_controller/appWidgets.dart';
-
 class AttendanceList extends StatefulWidget {
   const AttendanceList({super.key});
 
@@ -80,42 +78,54 @@ class _AttendanceListState extends State<AttendanceList> {
                   ),
                   SizedBox(
                     height: 70,
-                    child: Row(
-                      children: [
-                        Expanded(
-                            child: TextFormField(
-                          //readOnly: true,
-                          //onTap: ()=> selectDate(context),
-                          controller: date,
-                          onChanged: (v) {
-                            _search(v.toLowerCase());
-                          },
-                          decoration: InputDecoration(
-                              fillColor: Colors.grey.shade200,
-                              filled: true,
-                              border: const OutlineInputBorder(borderSide: BorderSide.none),
-                              hintText: "Search"),
-                        )),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Container(
-                          width: 100,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5), gradient: AppWidgets.buildLinearGradient()),
-                          child: const Center(
-                            child: Text(
-                              "Search",
-                              style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        ),
-                      ],
+                    // child: Row(
+                    //   children: [
+                    //     Expanded(
+                    //         child: TextFormField(
+                    //       //readOnly: true,
+                    //       //onTap: ()=> selectDate(context),
+                    //       controller: date,
+                    //       onChanged: (v) {
+                    //         _search(v.toLowerCase());
+                    //       },
+                    //       decoration: InputDecoration(
+                    //           fillColor: Colors.grey.shade200,
+                    //           filled: true,
+                    //           border: const OutlineInputBorder(borderSide: BorderSide.none),
+                    //           hintText: "Search"),
+                    //     )),
+                    //     const SizedBox(
+                    //       width: 15,
+                    //     ),
+                    //     Container(
+                    //       width: 100,
+                    //       height: 60,
+                    //       decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(5), gradient: AppWidgets.buildLinearGradient()),
+                    //       child: const Center(
+                    //         child: Text(
+                    //           "Search",
+                    //           style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    child: TextFormField(
+                      //readOnly: true,
+                      //onTap: ()=> selectDate(context),
+                      controller: date,
+                      onChanged: (v) {
+                        _search(v.toLowerCase());
+                      },
+                      decoration: InputDecoration(
+                        fillColor: Colors.grey.shade200,
+                        filled: true,
+                        border: const OutlineInputBorder(borderSide: BorderSide.none),
+                        hintText: "Search",
+                        prefixIcon: const Icon(Icons.search),
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
                   ),
                   Expanded(
                     child: Builder(builder: (context) {
@@ -305,7 +315,6 @@ class _AttendanceListState extends State<AttendanceList> {
 
   //search list
   void _search(String query) {
-    print("query == $query");
     _searchAllAttendanceList.clear();
 
     if (query.isNotEmpty) {
@@ -317,6 +326,10 @@ class _AttendanceListState extends State<AttendanceList> {
           });
         }
       }
-    } else {}
+    } else {
+      setState(() {
+        _searchAllAttendanceList.clear();
+      });
+    }
   }
 }
