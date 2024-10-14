@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:crm/controller/production_controller/production_controller.dart';
 import 'package:crm/view/home/productions/singleProductionInput.dart';
 import 'package:crm/view_controller/commonWidget.dart';
@@ -8,7 +10,6 @@ import 'package:get/get.dart';
 import '../../../model/production_model/all_production_model.dart';
 import '../../../model/production_model/transaction_by_production_id_model.dart';
 import '../../../utility/utility.dart';
-import '../../../view_controller/appWidgets.dart';
 
 class EditProductionsTranslation extends StatefulWidget {
   final AllProductionDatum? productionModel;
@@ -21,6 +22,7 @@ class EditProductionsTranslation extends StatefulWidget {
 class _EditProductionsTranslationState extends State<EditProductionsTranslation> {
   final List<TransactionDatum> _allTransactionByProductionList = [];
   final List<TransactionDatum> _allSearchTransactionByProductionList = [];
+  String query = "";
   bool isLoading = false;
   Future<void> _getTransactionByProduction() async {
     setState(() => isLoading = true);
@@ -55,7 +57,10 @@ class _EditProductionsTranslationState extends State<EditProductionsTranslation>
                 Expanded(
                     child: TextFormField(
                   onChanged: (v) {
-                    _search(v);
+                    setState(() {
+                      query = v;
+                    });
+                    // _search(v);
                   },
                   decoration: InputDecoration(
                       fillColor: Colors.grey.shade200,
@@ -63,181 +68,187 @@ class _EditProductionsTranslationState extends State<EditProductionsTranslation>
                       border: const OutlineInputBorder(borderSide: BorderSide.none),
                       hintText: "Search "),
                 )),
-                const SizedBox(
-                  width: 15,
-                ),
-                InkWell(
-                  // onTap: ()=>Get.to(AddNewGrade()),
-                  child: Container(
-                    width: 100,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5), gradient: AppWidgets.buildLinearGradient()),
-                    child: const Center(
-                      child: Text(
-                        "Search",
-                        style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  ),
-                ),
+                // const SizedBox(
+                //   width: 15,
+                // ),
+                // InkWell(
+                //   // onTap: ()=>Get.to(AddNewGrade()),
+                //   child: Container(
+                //     width: 100,
+                //     height: 60,
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(5), gradient: AppWidgets.buildLinearGradient()),
+                //     child: const Center(
+                //       child: Text(
+                //         "Search",
+                //         style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
             const SizedBox(
               height: 20,
             ),
             Expanded(
-                child: isLoading
-                    ? const AppLoader()
-                    : _allSearchTransactionByProductionList.isNotEmpty
-                        ? ListView.builder(
-                            itemCount: _allSearchTransactionByProductionList.length,
-                            itemBuilder: (_, index) {
-                              var data = _allSearchTransactionByProductionList[index];
-                              return Container(
-                                margin: const EdgeInsets.only(bottom: 20),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width * .35,
-                                      child: Text(
-                                        "${widget.productionModel!.productionId}/${data.id.toString()}",
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 15,
-                                        ),
+              child: isLoading
+                  ? const AppLoader()
+                  // : _allSearchTransactionByProductionList.isNotEmpty
+                  //     ? ListView.builder(
+                  //         itemCount: _allSearchTransactionByProductionList.length,
+                  //         itemBuilder: (_, index) {
+                  //           var data = _allSearchTransactionByProductionList[index];
+                  //           return Container(
+                  //             margin: const EdgeInsets.only(bottom: 20),
+                  //             child: Row(
+                  //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //               children: [
+                  //                 SizedBox(
+                  //                   width: MediaQuery.of(context).size.width * .35,
+                  //                   child: Text(
+                  //                     "${widget.productionModel!.productionId}/${index + 1}",
+                  //                     style: const TextStyle(
+                  //                       fontWeight: FontWeight.w600,
+                  //                       fontSize: 15,
+                  //                     ),
+                  //                   ),
+                  //                 ),
+                  //                 const SizedBox(
+                  //                   width: 10,
+                  //                 ),
+                  //                 SizedBox(
+                  //                     child: Container(
+                  //                   padding: const EdgeInsets.all(5),
+                  //                   decoration: BoxDecoration(
+                  //                       color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
+                  //                   child: Text(
+                  //                     "${data.grades!.name}",
+                  //                     style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
+                  //                   ),
+                  //                 )),
+                  //                 const SizedBox(
+                  //                   width: 10,
+                  //                 ),
+                  //                 SizedBox(
+                  //                     child: Container(
+                  //                   padding: const EdgeInsets.all(5),
+                  //                   decoration: BoxDecoration(
+                  //                       color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
+                  //                   child: Text(
+                  //                     "${data.weight}KG",
+                  //                     style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
+                  //                   ),
+                  //                 )),
+                  //                 const SizedBox(
+                  //                   width: 10,
+                  //                 ),
+                  //                 SizedBox(
+                  //                     child: InkWell(
+                  //                   onTap: () => Get.to(
+                  //                     () => SingleProductionInput(
+                  //                       transactionID: data.id.toString(),
+                  //                       production: widget.productionModel,
+                  //                       existingWeight: data.weight.toString(),
+                  //                       existingGrade: data.grades!.name,
+                  //                       existingGradeId: data.grades!.id.toString(),
+                  //                     ),
+                  //                   ),
+                  //                   child: Container(
+                  //                     padding: const EdgeInsets.only(left: 13, right: 13, top: 5, bottom: 5),
+                  //                     decoration: BoxDecoration(
+                  //                         color: AppColor.mainColor, borderRadius: BorderRadius.circular(5)),
+                  //                     child: const Text(
+                  //                       "Edit",
+                  //                       style: TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
+                  //                     ),
+                  //                   ),
+                  //                 ))
+                  //               ],
+                  //             ),
+                  //           );
+                  //         })
+                  : _allTransactionByProductionList.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: _allTransactionByProductionList.length,
+                          itemBuilder: (_, index) {
+                            var data = _allTransactionByProductionList[index];
+                            if (!"${widget.productionModel!.productionId}/${index + 1}/${data.grades!.name}/${data.weight}"
+                                .toLowerCase()
+                                .contains(query.toLowerCase())) {
+                              return const SizedBox();
+                            }
+                            return Container(
+                              margin: const EdgeInsets.only(bottom: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width * .35,
+                                    child: Text(
+                                      "${widget.productionModel!.productionId}/${index + 1}",
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 15,
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    SizedBox(
-                                        child: Container(
-                                      padding: const EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
-                                      child: Text(
-                                        "${data.grades!.name}",
-                                        style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
-                                      ),
-                                    )),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    SizedBox(
-                                        child: Container(
-                                      padding: const EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
-                                      child: Text(
-                                        "${data.weight}KG",
-                                        style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
-                                      ),
-                                    )),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    SizedBox(
-                                        child: InkWell(
-                                      onTap: () => Get.to(
-                                        () => SingleProductionInput(
-                                          transactionID: data.id.toString(),
-                                          production: widget.productionModel,
-                                          existingWeight: data.weight.toString(),
-                                          existingGrade: data.grades!.name,
-                                          existingGradeId: data.grades!.id.toString(),
-                                        ),
-                                      ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  SizedBox(
                                       child: Container(
-                                        padding: const EdgeInsets.only(left: 13, right: 13, top: 5, bottom: 5),
-                                        decoration: BoxDecoration(
-                                            color: AppColor.mainColor, borderRadius: BorderRadius.circular(5)),
-                                        child: const Text(
-                                          "Edit",
-                                          style: TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
-                                        ),
-                                      ),
-                                    ))
-                                  ],
-                                ),
-                              );
-                            })
-                        : _allTransactionByProductionList.isNotEmpty
-                            ? ListView.builder(
-                                itemCount: _allTransactionByProductionList.length,
-                                itemBuilder: (_, index) {
-                                  var data = _allTransactionByProductionList[index];
-                                  return Container(
-                                    margin: const EdgeInsets.only(bottom: 20),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          width: MediaQuery.of(context).size.width * .35,
-                                          child: Text(
-                                            "${widget.productionModel!.productionId}/${data.id.toString()}",
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 15,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        SizedBox(
-                                            child: Container(
-                                          padding: const EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                              color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
-                                          child: Text(
-                                            "${data.grades!.name}",
-                                            style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
-                                          ),
-                                        )),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        SizedBox(
-                                            child: Container(
-                                          padding: const EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                              color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
-                                          child: Text(
-                                            "${data.weight}KG",
-                                            style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
-                                          ),
-                                        )),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        SizedBox(
-                                            child: InkWell(
-                                          onTap: () => Get.to(SingleProductionInput(
-                                            transactionID: data.id.toString(),
-                                            production: widget.productionModel,
-                                            existingWeight: data.weight.toString(),
-                                            existingGrade: data.grades!.name,
-                                            existingGradeId: data.grades!.id.toString(),
-                                          )),
-                                          child: Container(
-                                            padding: const EdgeInsets.only(left: 13, right: 13, top: 5, bottom: 5),
-                                            decoration: BoxDecoration(
-                                                color: AppColor.mainColor, borderRadius: BorderRadius.circular(5)),
-                                            child: const Text(
-                                              "Edit",
-                                              style: TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
-                                            ),
-                                          ),
-                                        ))
-                                      ],
+                                    padding: const EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
+                                    child: Text(
+                                      "${data.grades!.name}",
+                                      style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
                                     ),
-                                  );
-                                })
-                            : const Center(
-                                child: Text("Data not found."),
-                              )),
+                                  )),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  SizedBox(
+                                      child: Container(
+                                    padding: const EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
+                                    child: Text(
+                                      "${data.weight}KG",
+                                      style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
+                                    ),
+                                  )),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  SizedBox(
+                                      child: InkWell(
+                                    onTap: () => Get.to(SingleProductionInput(
+                                      transactionID: data.id.toString(),
+                                      production: widget.productionModel,
+                                      existingWeight: data.weight.toString(),
+                                      existingGrade: data.grades!.name,
+                                      existingGradeId: data.grades!.id.toString(),
+                                    )),
+                                    child: Container(
+                                      padding: const EdgeInsets.only(left: 13, right: 13, top: 5, bottom: 5),
+                                      decoration: BoxDecoration(
+                                          color: AppColor.mainColor, borderRadius: BorderRadius.circular(5)),
+                                      child: const Text(
+                                        "Edit",
+                                        style: TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
+                                      ),
+                                    ),
+                                  ))
+                                ],
+                              ),
+                            );
+                          })
+                      : const Center(
+                          child: Text("Data not found."),
+                        ),
+            ),
           ],
         ),
       ),
@@ -249,10 +260,12 @@ class _EditProductionsTranslationState extends State<EditProductionsTranslation>
     print("query == $query");
     _allSearchTransactionByProductionList.clear();
     if (query.isNotEmpty) {
-      for (var i in _allTransactionByProductionList) {
-        if ("${widget.productionModel!.productionId}/${i.id.toString()}".toLowerCase().contains(query)) {
+      for (var i = 0; i < _allTransactionByProductionList.length; i++) {
+        log("${widget.productionModel!.productionId}/${i + 1}",
+            name: "${widget.productionModel!.productionId}/${i + 1}".toLowerCase().contains(query).toString());
+        if ("${widget.productionModel!.productionId}/${i + 1}".toLowerCase().contains(query)) {
           setState(() {
-            _allSearchTransactionByProductionList.add(i);
+            _allSearchTransactionByProductionList.add(_allTransactionByProductionList[i]);
           });
         }
       }

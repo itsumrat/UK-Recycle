@@ -2,7 +2,6 @@ import 'package:crm/controller/delivery_controller%20/in_controller/exstingDeliv
 import 'package:crm/utility/utility.dart';
 import 'package:crm/view/home/dalivery/deliveryIn/deliveryIn.dart';
 import 'package:crm/view/home/dalivery/deliveryIn/existingDeliveries/singleExistingDeliveries.dart';
-import 'package:crm/view_controller/appWidgets.dart';
 import 'package:crm/view_controller/commonWidget.dart';
 import 'package:crm/view_controller/loader.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +23,7 @@ class ExistingDeliveries extends StatefulWidget {
 class _ExistingDeliveriesState extends State<ExistingDeliveries> {
   var inputFormat = DateFormat("dd-MM-yyyy");
   var filter = ListFilter.today;
+  String query = "";
 
   @override
   void initState() {
@@ -43,31 +43,36 @@ class _ExistingDeliveriesState extends State<ExistingDeliveries> {
             Row(
               children: [
                 Expanded(
-                    child: TextFormField(
-                  onChanged: (v) {
-                    _search(v.toLowerCase());
-                  },
-                  decoration: InputDecoration(
+                  child: TextFormField(
+                    onChanged: (v) {
+                      // _search(v.toLowerCase());
+                      setState(() {
+                        query = v;
+                      });
+                    },
+                    decoration: InputDecoration(
                       fillColor: Colors.grey.shade200,
                       filled: true,
                       border: const OutlineInputBorder(borderSide: BorderSide.none),
-                      hintText: "Search by ID"),
-                )),
-                const SizedBox(
-                  width: 15,
-                ),
-                Container(
-                  width: 100,
-                  height: 60,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(5), gradient: AppWidgets.buildLinearGradient()),
-                  child: const Center(
-                    child: Text(
-                      "Search",
-                      style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
+                      hintText: "Search",
                     ),
                   ),
                 ),
+                // const SizedBox(
+                //   width: 15,
+                // ),
+                // Container(
+                //   width: 100,
+                //   height: 60,
+                //   decoration:
+                //       BoxDecoration(borderRadius: BorderRadius.circular(5), gradient: AppWidgets.buildLinearGradient()),
+                //   child: const Center(
+                //     child: Text(
+                //       "Search",
+                //       style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
+                //     ),
+                //   ),
+                // ),
                 const SizedBox(
                   width: 15,
                 ),
@@ -114,70 +119,74 @@ class _ExistingDeliveriesState extends State<ExistingDeliveries> {
             Expanded(
               child: isLoading
                   ? const AppLoader()
-                  : _searchExistingDeliveryInList.isNotEmpty
-                      ? ListView.builder(
-                          itemCount: _searchExistingDeliveryInList.length,
-                          itemBuilder: (_, index) {
-                            var data = _searchExistingDeliveryInList[index];
-                            return InkWell(
-                              onTap: () => Get.to(SingleExistingDeliveries(
-                                existingDeliveryInDatum: data,
-                                existingDeliveryId: data.id.toString(),
-                              )),
-                              child: Container(
-                                //height: 50,
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                    //borderRadius: BorderRadius.circular(5),
-                                    border: Border(
-                                  top: const BorderSide(width: 1, color: AppColor.borderColor),
-                                  left: const BorderSide(width: 1, color: AppColor.borderColor),
-                                  right: const BorderSide(width: 1, color: AppColor.borderColor),
-                                  bottom: _searchExistingDeliveryInList.length == 1
-                                      ? const BorderSide(width: 1, color: AppColor.borderColor)
-                                      : const BorderSide(width: 0, color: AppColor.white),
-                                )),
-                                child: Text(
-                                  "${data.deliveryInId}/${inputFormat.format(data.date!)}/${data.supplier!.name}/${data.measurement!.name}",
-                                  style:
-                                      const TextStyle(fontWeight: FontWeight.w500, color: Colors.black54, fontSize: 16),
-                                ),
-                              ),
-                            );
-                          })
-                      : ListView.builder(
-                          itemCount: _existingDeliveryInList.length,
-                          itemBuilder: (_, index) {
-                            var data = _existingDeliveryInList[index];
-                            return InkWell(
-                              onTap: () => Get.to(
-                                SingleExistingDeliveries(
-                                  existingDeliveryInDatum: data,
-                                  existingDeliveryId: data.id.toString(),
-                                ),
-                              ),
-                              child: Container(
-                                //height: 50,
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                    //borderRadius: BorderRadius.circular(5),
-                                    border: Border(
-                                  top: const BorderSide(width: 1, color: AppColor.borderColor),
-                                  left: const BorderSide(width: 1, color: AppColor.borderColor),
-                                  right: const BorderSide(width: 1, color: AppColor.borderColor),
-                                  bottom: _existingDeliveryInList.length != 1
-                                      ? const BorderSide(width: 1, color: AppColor.borderColor)
-                                      : const BorderSide(width: 0, color: AppColor.white),
-                                )),
-                                child: Text(
-                                  "${data.deliveryInId}/${inputFormat.format(data.date!)}/${data.supplier?.name}/${data.measurement!.name}",
-                                  style:
-                                      const TextStyle(fontWeight: FontWeight.w500, color: Colors.black54, fontSize: 16),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                  // : _searchExistingDeliveryInList.isNotEmpty
+                  //     ? ListView.builder(
+                  //         itemCount: _searchExistingDeliveryInList.length,
+                  //         itemBuilder: (_, index) {
+                  //           var data = _searchExistingDeliveryInList[index];
+                  //           return InkWell(
+                  //             onTap: () => Get.to(SingleExistingDeliveries(
+                  //               existingDeliveryInDatum: data,
+                  //               existingDeliveryId: data.id.toString(),
+                  //             )),
+                  //             child: Container(
+                  //               //height: 50,
+                  //               padding: const EdgeInsets.all(20),
+                  //               decoration: BoxDecoration(
+                  //                   //borderRadius: BorderRadius.circular(5),
+                  //                   border: Border(
+                  //                 top: const BorderSide(width: 1, color: AppColor.borderColor),
+                  //                 left: const BorderSide(width: 1, color: AppColor.borderColor),
+                  //                 right: const BorderSide(width: 1, color: AppColor.borderColor),
+                  //                 bottom: _searchExistingDeliveryInList.length == 1
+                  //                     ? const BorderSide(width: 1, color: AppColor.borderColor)
+                  //                     : const BorderSide(width: 0, color: AppColor.white),
+                  //               )),
+                  //               child: Text(
+                  //                 "${data.deliveryInId}/${inputFormat.format(data.date!)}/${data.supplier!.name}/${data.measurement!.name}",
+                  //                 style:
+                  //                     const TextStyle(fontWeight: FontWeight.w500, color: Colors.black54, fontSize: 16),
+                  //               ),
+                  //             ),
+                  //           );
+                  //         })
+                  : ListView.builder(
+                      itemCount: _existingDeliveryInList.length,
+                      itemBuilder: (_, index) {
+                        var data = _existingDeliveryInList[index];
+                        if (!"${data.deliveryInId}/${inputFormat.format(data.date!)}/${data.supplier?.name}/${data.measurement!.name}"
+                            .toLowerCase()
+                            .contains(query.toLowerCase())) {
+                          return const SizedBox();
+                        }
+                        return InkWell(
+                          onTap: () => Get.to(
+                            SingleExistingDeliveries(
+                              existingDeliveryInDatum: data,
+                              existingDeliveryId: data.id.toString(),
+                            ),
+                          ),
+                          child: Container(
+                            //height: 50,
+                            padding: const EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                                //borderRadius: BorderRadius.circular(5),
+                                border: Border(
+                              top: const BorderSide(width: 1, color: AppColor.borderColor),
+                              left: const BorderSide(width: 1, color: AppColor.borderColor),
+                              right: const BorderSide(width: 1, color: AppColor.borderColor),
+                              bottom: _existingDeliveryInList.length != 1
+                                  ? const BorderSide(width: 1, color: AppColor.borderColor)
+                                  : const BorderSide(width: 0, color: AppColor.white),
+                            )),
+                            child: Text(
+                              "${data.deliveryInId}/${inputFormat.format(data.date!)}/${data.supplier?.name}/${data.measurement!.name}",
+                              style: const TextStyle(fontWeight: FontWeight.w500, color: Colors.black54, fontSize: 16),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
             ),
           ],
         ),
