@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:crm/controller/auth_controller/auth_controller.dart';
 import 'package:crm/utility/app_const.dart';
@@ -176,6 +177,7 @@ class _SignInState extends State<SignIn> {
       try {
         setState(() => loading = true);
         var res = await AuthController.login(email: email.text, password: password.text);
+        log(res.body);
         if (res.statusCode == 200) {
           if (jsonDecode(res.body)["type"] == AppConst.adminRole) {
             setState(() => loading = false);

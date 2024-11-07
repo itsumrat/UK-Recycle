@@ -108,175 +108,175 @@ class _TransactionsState extends State<Transactions> {
                     height: 20,
                   ),
                   Expanded(
-                      child:
-                          // _searchTranscationList.isNotEmpty
-                          // ? ListView.builder(
-                          //     itemCount: _searchTranscationList.length,
-                          //     itemBuilder: (_, index) {
-                          //       final transaction = _searchTranscationList[index];
-                          //       return InkWell(
-                          //         //onTap: ()=>Get.to(SingleExistingDeliveries()),
-                          //         child: Container(
-                          //           //height: 50,
-                          //           padding: const EdgeInsets.all(15),
-                          //           child: Row(
-                          //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //             children: [
-                          //               SizedBox(
-                          //                 width: size.width * .30,
-                          //                 child: Text(
-                          //                   "${widget.singleDeliveryInModel!.data!.delivery!.deliveryInId}/${_searchTranscationList[index].id}",
-                          //                   style: const TextStyle(
-                          //                       fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16),
-                          //                 ),
-                          //               ),
-                          //               SizedBox(
-                          //                 child: Container(
-                          //                   padding: const EdgeInsets.all(4),
-                          //                   decoration: BoxDecoration(
-                          //                       color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
-                          //                   child: Text(
-                          //                     transaction.category?.name ?? 'N\\A',
-                          //                     style: const TextStyle(
-                          //                         fontWeight: FontWeight.w400, color: AppColor.textColor, fontSize: 16),
-                          //                   ),
-                          //                 ),
-                          //               ),
-                          //               const SizedBox(
-                          //                 width: 10,
-                          //               ),
-                          //               SizedBox(
-                          //                 child: Container(
-                          //                   padding: const EdgeInsets.all(4),
-                          //                   decoration: BoxDecoration(
-                          //                       color: Colors.grey.shade300, borderRadius: BorderRadius.circular(5)),
-                          //                   child: Text(
-                          //                     "${_searchTranscationList[index].productWeight} ${widget.singleDeliveryInModel!.data!.delivery!.measurement!.name}",
-                          //                     style: const TextStyle(
-                          //                         fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16),
-                          //                   ),
-                          //                 ),
-                          //               ),
-                          //               const SizedBox(
-                          //                 width: 10,
-                          //               ),
-                          //               SizedBox(
-                          //                 child: InkWell(
-                          //                   onTap: () => Get.to(EditTranscation(
-                          //                     existingDeliveryInDatum: widget.existingDeliveryInDatum,
-                          //                     singleDelivery: widget.singleDeliveryInModel!,
-                          //                     singleTransaction: _searchTranscationList[index],
-                          //                   )),
-                          //                   child: Container(
-                          //                     padding: const EdgeInsets.only(left: 15, right: 15, bottom: 5, top: 5),
-                          //                     decoration: BoxDecoration(
-                          //                         color: AppColor.mainColor, borderRadius: BorderRadius.circular(5)),
-                          //                     child: const Text(
-                          //                       "Edit",
-                          //                       style: TextStyle(
-                          //                           fontWeight: FontWeight.w400, color: Colors.white, fontSize: 16),
-                          //                     ),
-                          //                   ),
-                          //                 ),
-                          //               ),
-                          //             ],
-                          //           ),
-                          //         ),
-                          //       );
-                          //     })
-                          // :
-                          _transcationList.isEmpty
-                              ? const Center(child: Text("No data found."))
-                              : ListView.builder(
-                                  itemCount: _transcationList.length,
-                                  itemBuilder: (_, index) {
-                                    final transaction = _transcationList[index];
-                                    if (!"${widget.singleDeliveryInModel!.data!.delivery!.deliveryInId}/${index + 1}/${transaction.category?.name ?? 'N\\A'}/${_transcationList[index].productWeight?.toStringAsFixed(2)}"
-                                        .toLowerCase()
-                                        .contains(query.toLowerCase())) {
-                                      return const SizedBox();
-                                    }
-                                    return InkWell(
-                                      //onTap: ()=>Get.to(SingleExistingDeliveries()),
-                                      child: Container(
-                                        //height: 50,
-                                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            SizedBox(
-                                              width: size.width * .28,
+                    child:
+                        // _searchTranscationList.isNotEmpty
+                        // ? ListView.builder(
+                        //     itemCount: _searchTranscationList.length,
+                        //     itemBuilder: (_, index) {
+                        //       final transaction = _searchTranscationList[index];
+                        //       return InkWell(
+                        //         //onTap: ()=>Get.to(SingleExistingDeliveries()),
+                        //         child: Container(
+                        //           //height: 50,
+                        //           padding: const EdgeInsets.all(15),
+                        //           child: Row(
+                        //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //             children: [
+                        //               SizedBox(
+                        //                 width: size.width * .30,
+                        //                 child: Text(
+                        //                   "${widget.singleDeliveryInModel!.data!.delivery!.deliveryInId}/${_searchTranscationList[index].id}",
+                        //                   style: const TextStyle(
+                        //                       fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16),
+                        //                 ),
+                        //               ),
+                        //               SizedBox(
+                        //                 child: Container(
+                        //                   padding: const EdgeInsets.all(4),
+                        //                   decoration: BoxDecoration(
+                        //                       color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
+                        //                   child: Text(
+                        //                     transaction.category?.name ?? 'N\\A',
+                        //                     style: const TextStyle(
+                        //                         fontWeight: FontWeight.w400, color: AppColor.textColor, fontSize: 16),
+                        //                   ),
+                        //                 ),
+                        //               ),
+                        //               const SizedBox(
+                        //                 width: 10,
+                        //               ),
+                        //               SizedBox(
+                        //                 child: Container(
+                        //                   padding: const EdgeInsets.all(4),
+                        //                   decoration: BoxDecoration(
+                        //                       color: Colors.grey.shade300, borderRadius: BorderRadius.circular(5)),
+                        //                   child: Text(
+                        //                     "${_searchTranscationList[index].productWeight} ${widget.singleDeliveryInModel!.data!.delivery!.measurement!.name}",
+                        //                     style: const TextStyle(
+                        //                         fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16),
+                        //                   ),
+                        //                 ),
+                        //               ),
+                        //               const SizedBox(
+                        //                 width: 10,
+                        //               ),
+                        //               SizedBox(
+                        //                 child: InkWell(
+                        //                   onTap: () => Get.to(EditTranscation(
+                        //                     existingDeliveryInDatum: widget.existingDeliveryInDatum,
+                        //                     singleDelivery: widget.singleDeliveryInModel!,
+                        //                     singleTransaction: _searchTranscationList[index],
+                        //                   )),
+                        //                   child: Container(
+                        //                     padding: const EdgeInsets.only(left: 15, right: 15, bottom: 5, top: 5),
+                        //                     decoration: BoxDecoration(
+                        //                         color: AppColor.mainColor, borderRadius: BorderRadius.circular(5)),
+                        //                     child: const Text(
+                        //                       "Edit",
+                        //                       style: TextStyle(
+                        //                           fontWeight: FontWeight.w400, color: Colors.white, fontSize: 16),
+                        //                     ),
+                        //                   ),
+                        //                 ),
+                        //               ),
+                        //             ],
+                        //           ),
+                        //         ),
+                        //       );
+                        //     })
+                        // :
+                        _transcationList.isEmpty
+                            ? const Center(child: Text("No data found."))
+                            : ListView.builder(
+                                itemCount: _transcationList.length,
+                                itemBuilder: (_, index) {
+                                  final transaction = _transcationList[index];
+                                  if (!"${widget.singleDeliveryInModel!.data!.delivery!.deliveryInId}/${transaction.serialNumber ?? ""}/${transaction.category?.name ?? 'N\\A'}/${_transcationList[index].productWeight?.toStringAsFixed(2)}"
+                                      .toLowerCase()
+                                      .contains(query.toLowerCase())) {
+                                    return const SizedBox();
+                                  }
+                                  return InkWell(
+                                    //onTap: ()=>Get.to(SingleExistingDeliveries()),
+                                    child: Container(
+                                      //height: 50,
+                                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                            width: size.width * .28,
+                                            child: Text(
+                                              "${widget.singleDeliveryInModel!.data!.delivery!.deliveryInId}/${transaction.serialNumber ?? ""}",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            child: Container(
+                                              padding: const EdgeInsets.all(4),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
                                               child: Text(
-                                                "${widget.singleDeliveryInModel!.data!.delivery!.deliveryInId}/${index + 1}",
+                                                transaction.category?.name ?? 'N\\A',
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    color: AppColor.textColor,
+                                                    fontSize: 16),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          SizedBox(
+                                            child: Container(
+                                              padding: const EdgeInsets.all(4),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey.shade300, borderRadius: BorderRadius.circular(5)),
+                                              child: Text(
+                                                "${_transcationList[index].productWeight?.toStringAsFixed(2)} ${widget.singleDeliveryInModel!.data!.delivery!.measurement!.name}",
                                                 style: const TextStyle(
                                                     fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16),
                                               ),
                                             ),
-                                            SizedBox(
-                                              child: Container(
-                                                padding: const EdgeInsets.all(4),
-                                                decoration: BoxDecoration(
-                                                    color: Colors.grey.shade200,
-                                                    borderRadius: BorderRadius.circular(5)),
-                                                child: Text(
-                                                  transaction.category?.name ?? 'N\\A',
-                                                  style: const TextStyle(
-                                                      fontWeight: FontWeight.w400,
-                                                      color: AppColor.textColor,
-                                                      fontSize: 16),
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            SizedBox(
-                                              child: Container(
-                                                padding: const EdgeInsets.all(4),
-                                                decoration: BoxDecoration(
-                                                    color: Colors.grey.shade300,
-                                                    borderRadius: BorderRadius.circular(5)),
-                                                child: Text(
-                                                  "${_transcationList[index].productWeight?.toStringAsFixed(2)} ${widget.singleDeliveryInModel!.data!.delivery!.measurement!.name}",
-                                                  style: const TextStyle(
-                                                      fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16),
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            role == AppConst.supervisorRole
-                                                ? SizedBox(
-                                                    child: InkWell(
-                                                      onTap: () => Get.to(EditTranscation(
-                                                        existingDeliveryInDatum: widget.existingDeliveryInDatum,
-                                                        singleDelivery: widget.singleDeliveryInModel!,
-                                                        singleTransaction: _transcationList[index],
-                                                        existingCage: _transcationList[index].cage,
-                                                      )),
-                                                      child: Container(
-                                                        padding: const EdgeInsets.only(
-                                                            left: 15, right: 15, bottom: 5, top: 5),
-                                                        decoration: BoxDecoration(
-                                                            color: AppColor.mainColor,
-                                                            borderRadius: BorderRadius.circular(5)),
-                                                        child: const Text(
-                                                          "Edit",
-                                                          style: TextStyle(
-                                                              fontWeight: FontWeight.w400,
-                                                              color: Colors.white,
-                                                              fontSize: 16),
-                                                        ),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          role == AppConst.supervisorRole
+                                              ? SizedBox(
+                                                  child: InkWell(
+                                                    onTap: () => Get.to(EditTranscation(
+                                                      existingDeliveryInDatum: widget.existingDeliveryInDatum,
+                                                      singleDelivery: widget.singleDeliveryInModel!,
+                                                      singleTransaction: _transcationList[index],
+                                                      existingCage: _transcationList[index].cage,
+                                                    )),
+                                                    child: Container(
+                                                      padding:
+                                                          const EdgeInsets.only(left: 15, right: 15, bottom: 5, top: 5),
+                                                      decoration: BoxDecoration(
+                                                          color: AppColor.mainColor,
+                                                          borderRadius: BorderRadius.circular(5)),
+                                                      child: const Text(
+                                                        "Edit",
+                                                        style: TextStyle(
+                                                            fontWeight: FontWeight.w400,
+                                                            color: Colors.white,
+                                                            fontSize: 16),
                                                       ),
                                                     ),
-                                                  )
-                                                : const Center(),
-                                          ],
-                                        ),
+                                                  ),
+                                                )
+                                              : const Center(),
+                                        ],
                                       ),
-                                    );
-                                  })),
+                                    ),
+                                  );
+                                },
+                              ),
+                  ),
                 ],
               ),
             ),

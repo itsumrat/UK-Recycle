@@ -2,10 +2,10 @@ import 'package:intl/intl.dart';
 
 class AppConfig {
   // static const Gradient color = [Colors.red,Colors.white] as Gradient;
-  static const String DOMAIN = "https://uktextileandrecycling.co.uk";
+  static const String DOMAIN = "https://apps.uktextileandrecycling.co.uk";
   static const String PUBLIC = "public";
-  static const String BASE_URL = "$DOMAIN/$PUBLIC/api";
-  static const String PUBLIC_BASE_URL = "$DOMAIN/$PUBLIC";
+  static const String BASE_URL = "$DOMAIN/api";
+  static const String PUBLIC_BASE_URL = DOMAIN;
 
   static const String LOGIN = "$BASE_URL/auth/login";
   static const String PROFILE_INFO = "$BASE_URL/profile/"; //get id in this eand point

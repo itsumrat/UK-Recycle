@@ -193,7 +193,7 @@ class _DeliveryOutsTransactionsListState extends State<DeliveryOutsTransactionsL
                                 itemCount: _transcationList.length,
                                 itemBuilder: (_, index) {
                                   final transaction = _transcationList[index];
-                                  if (!"${widget.singleDeliveryOutModel!.data!.delivery!.deliveryOutId}/${index + 1}/${transaction.category?.name ?? 'N\\A'}/${_transcationList[index].productWeight?.toStringAsFixed(2)}"
+                                  if (!"${widget.singleDeliveryOutModel!.data!.delivery!.deliveryOutId}/${transaction.serialNumber ?? ''}/${transaction.category?.name ?? 'N\\A'}/${_transcationList[index].productWeight?.toStringAsFixed(2)}"
                                       .toLowerCase()
                                       .contains(query.toLowerCase())) {
                                     return const SizedBox();
@@ -210,7 +210,7 @@ class _DeliveryOutsTransactionsListState extends State<DeliveryOutsTransactionsL
                                             SizedBox(
                                               width: size.width * .30,
                                               child: Text(
-                                                "${widget.singleDeliveryOutModel!.data!.delivery!.deliveryOutId}/${index + 1}",
+                                                "${widget.singleDeliveryOutModel!.data!.delivery!.deliveryOutId}/${transaction.serialNumber ?? ''}",
                                                 style: const TextStyle(
                                                     fontWeight: FontWeight.w400, color: Colors.black, fontSize: 16),
                                               ),

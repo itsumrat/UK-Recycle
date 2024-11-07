@@ -172,8 +172,8 @@ class _EditProductionsTranslationState extends State<EditProductionsTranslation>
                       ? ListView.builder(
                           itemCount: _allTransactionByProductionList.length,
                           itemBuilder: (_, index) {
-                            var data = _allTransactionByProductionList[index];
-                            if (!"${widget.productionModel!.productionId}/${index + 1}/${data.grades!.name}/${data.weight}"
+                            var transaction = _allTransactionByProductionList[index];
+                            if (!"${widget.productionModel!.productionId}/${transaction.serialNumber ?? ''}/${transaction.grades!.name}/${transaction.weight}"
                                 .toLowerCase()
                                 .contains(query.toLowerCase())) {
                               return const SizedBox();
@@ -186,7 +186,7 @@ class _EditProductionsTranslationState extends State<EditProductionsTranslation>
                                   SizedBox(
                                     width: MediaQuery.of(context).size.width * .35,
                                     child: Text(
-                                      "${widget.productionModel!.productionId}/${index + 1}",
+                                      "${widget.productionModel!.productionId}/${transaction.serialNumber ?? ''}",
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 15,
@@ -202,7 +202,7 @@ class _EditProductionsTranslationState extends State<EditProductionsTranslation>
                                     decoration: BoxDecoration(
                                         color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
                                     child: Text(
-                                      "${data.grades!.name}",
+                                      "${transaction.grades!.name}",
                                       style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
                                     ),
                                   )),
@@ -215,7 +215,7 @@ class _EditProductionsTranslationState extends State<EditProductionsTranslation>
                                     decoration: BoxDecoration(
                                         color: Colors.grey.shade200, borderRadius: BorderRadius.circular(5)),
                                     child: Text(
-                                      "${data.weight}KG",
+                                      "${transaction.weight}KG",
                                       style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.grey),
                                     ),
                                   )),
@@ -225,11 +225,11 @@ class _EditProductionsTranslationState extends State<EditProductionsTranslation>
                                   SizedBox(
                                       child: InkWell(
                                     onTap: () => Get.to(SingleProductionInput(
-                                      transactionID: data.id.toString(),
+                                      transactionID: transaction.id.toString(),
                                       production: widget.productionModel,
-                                      existingWeight: data.weight.toString(),
-                                      existingGrade: data.grades!.name,
-                                      existingGradeId: data.grades!.id.toString(),
+                                      existingWeight: transaction.weight.toString(),
+                                      existingGrade: transaction.grades!.name,
+                                      existingGradeId: transaction.grades!.id.toString(),
                                     )),
                                     child: Container(
                                       padding: const EdgeInsets.only(left: 13, right: 13, top: 5, bottom: 5),

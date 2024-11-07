@@ -74,6 +74,8 @@ class Transaction {
   final User? user;
   final CageDatum? cage;
   final Categories? category;
+  final String? serialNumber;
+
 
   Transaction({
     this.id,
@@ -91,6 +93,7 @@ class Transaction {
     this.productWeight,
     this.cage,
     this.category,
+    this.serialNumber,
   });
 
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
@@ -109,6 +112,7 @@ class Transaction {
         productWeight: json["product_weight"]?.toDouble(),
         cage: json["cage"] == null ? null : CageDatum.fromJson(json["cage"]),
         category: json["category"] == null ? null : Categories.fromJson(json["category"]),
+        serialNumber: json["serial_number"]?.toString(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -127,6 +131,7 @@ class Transaction {
         "product_weight": productWeight,
         "cage": cage?.toJson(),
         "category": category?.toJson(),
+        "serial_number": serialNumber,
       };
 }
 
