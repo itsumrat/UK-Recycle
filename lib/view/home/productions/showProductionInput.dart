@@ -36,10 +36,9 @@ class _ShowProductionsInputsState extends State<ShowProductionsInputs> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getSingleTransactionByProduction =
-        ProductionController.getSingleTransactionByProduction(id: widget.production!.id.toString());
+        ProductionController.getSingleTransactionByProduction(id: widget.transactionID.toString());
   }
 
   @override
