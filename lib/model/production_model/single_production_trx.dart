@@ -42,6 +42,8 @@ class Data {
   final DateTime? updatedAt;
   final Grades? grades;
 
+  final String? serialNumber;
+
   Data({
     this.id,
     this.productionId,
@@ -51,6 +53,7 @@ class Data {
     this.createdAt,
     this.updatedAt,
     this.grades,
+    this.serialNumber,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
@@ -62,6 +65,7 @@ class Data {
         createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
         updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
         grades: json["grades"] == null ? null : Grades.fromJson(json["grades"]),
+        serialNumber: json["serial_number"]?.toString(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -73,6 +77,7 @@ class Data {
         "created_at": createdAt?.toIso8601String(),
         "updated_at": updatedAt?.toIso8601String(),
         "grades": grades?.toJson(),
+        "serial_number": serialNumber,
       };
 }
 

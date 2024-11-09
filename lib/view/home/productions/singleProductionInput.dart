@@ -277,6 +277,7 @@ class _SingleProductionInputState extends State<SingleProductionInput> {
               weight: weight,
               grade: grade,
               production: widget.production,
+              serial_number: data["serial_number"],
             ),
           );
         } else {
@@ -304,13 +305,16 @@ class _SingleProductionInputState extends State<SingleProductionInput> {
       if (res.statusCode == 200) {
         AppSnackbar.appSnackbar("Production edit success.", Colors.green, context);
         var data = jsonDecode(res.body)["data"];
-        Get.to(ShowProductionsInputs(
-          transactionID: widget.transactionID,
-          date: DateFormat('dd/MM/yyyy').format(DateTime.parse(data["created_at"])),
-          weight: data["weight"],
-          grade: data["grade"],
-          production: widget.production,
-        ));
+        Get.to(
+          ShowProductionsInputs(
+            transactionID: widget.transactionID,
+            date: DateFormat('dd/MM/yyyy').format(DateTime.parse(data["created_at"])),
+            weight: data["weight"],
+            grade: data["grade"],
+            production: widget.production,
+            serial_number: data["serial_number"],
+          ),
+        );
       }
       setState(() => isLoading = false);
     } else {

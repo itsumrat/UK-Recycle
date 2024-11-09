@@ -17,8 +17,15 @@ class ShowProductionsInputs extends StatefulWidget {
   final String date;
   final AllProductionDatum? production;
   final String? transactionID;
+  final String? serial_number;
   const ShowProductionsInputs(
-      {super.key, required this.weight, required this.grade, this.production, required this.date, this.transactionID});
+      {super.key,
+      required this.weight,
+      required this.grade,
+      this.production,
+      required this.date,
+      this.transactionID,
+      required this.serial_number});
 
   @override
   State<ShowProductionsInputs> createState() => _ShowProductionsInputsState();
@@ -48,13 +55,14 @@ class _ShowProductionsInputsState extends State<ShowProductionsInputs> {
                   child: AppLoader(),
                 );
               } else if (snapshot.hasData) {
+                var data = snapshot.data!.data!;
                 return SingleChildScrollView(
                   padding: const EdgeInsets.all(30),
                   child: Column(
                     children: [
                       Center(
                         child: AppTitleText(
-                            text: "Transaction Created ${widget.production!.productionId}/${widget.transactionID}"),
+                            text: "Transaction Created ${widget.production!.productionId}/${data.serialNumber}"),
                       ),
                       const SizedBox(
                         height: 40,
@@ -72,7 +80,7 @@ class _ShowProductionsInputsState extends State<ShowProductionsInputs> {
                             // ),
                             AppSideBySIdeText(
                                 leftText: "Production trx:  ",
-                                rightText: "${widget.production!.productionId}/${widget.transactionID}"),
+                                rightText: "${widget.production!.productionId}/${data.serialNumber}"),
                             const SizedBox(
                               height: 20,
                             ),

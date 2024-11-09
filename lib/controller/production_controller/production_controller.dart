@@ -97,6 +97,7 @@ class ProductionController {
     var token = pref.getString("token");
     var res =
         await http.get(Uri.parse("${AppConfig.SINGLE_TRANSCATION}$id"), headers: {"Authorization": "Bearer $token"});
+    log("Body: ${res.body}", name: "ProductionController");
     return SingleProductionTrx.fromJson(jsonDecode(res.body));
   }
 }
