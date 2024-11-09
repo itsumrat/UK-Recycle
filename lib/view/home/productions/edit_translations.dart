@@ -46,7 +46,7 @@ class _EditProductionsTranslationState extends State<EditProductionsTranslation>
   @override
   Widget build(BuildContext context) {
     return AppWidget(
-      appBarTitle: "Translation List",
+      appBarTitle: "Transaction List",
       appBarOnBack: () => Get.back(),
       body: Padding(
         padding: const EdgeInsets.all(20),
